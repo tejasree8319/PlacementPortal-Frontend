@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>
+      Students List
+    </title>
+    <script>
+      function showdata() {
+        $.ajax({
+          type: 'get',
+          url: 'http://localhost:8000/student/all',
+          dataType: 'json',
+          success: function(response) {
+            alert(response);
+          },
+          error: function() {
+            alert('Error');
+          }
+        });
+      }
+    </script>
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  </head>
+  <body onload="showdata()"></body>
+</html>

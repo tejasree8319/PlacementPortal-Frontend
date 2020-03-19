@@ -1,0 +1,80 @@
+<html>
+  <head>
+    <title>
+      Register Form
+    </title>
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $('form').submit(function() {
+          var Id = document.getElementById('userId').value;
+          var Password = document.getElementById('password').value;
+          var UserType = document.getElementById('userType').value;
+          var formData = {
+            userId: Id,
+            password: Password,
+            userType: UserType
+          };
+          alert(Id + Password + UserType);
+
+          $.ajax({
+            type: 'post',
+            url: 'http://localhost:8000/register',
+            dataType: 'json',
+            data: formData,
+            success: function(response) {
+              console.log('Success');
+              alert('Local success callback');
+            },
+            error: function(jqXHR, status, err) {
+              console.log('Error');
+              alert('Error');
+            },
+            complete: function(jqXHR, status) {
+              console.log('Complete');
+              alert('Local completion callback.');
+            }
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <!-- <a class="navbar-brand" href="register.html">Logout</a> -->
+        </div>
+        <ul class="nav navbar-nav">
+          <li><a> Home</a></li>
+          <li><a href="studentlist.html">View Students</a></li>
+          <li><a>PlacementDetails</a></li>
+          <li><a>Logout</a></li>
+          <!-- <li class="active"><a href="new_customer.html">New Customer</a></li> -->
+        </ul>
+      </div>
+    </nav>
+    <form action="http://localhost:8000/register" method="POST">
+      <br />
+      <br />
+      <label for="uId">UserId:</label><br />
+      <input type="text" id="userId" name="uId" required /><br />
+      <label for="password">Password:</label><br />
+      <input type="password" id="password" name="password" required /><br />
+
+      <label for="uType">UserType:</label><br />
+
+      <select id="userType" required>
+        <option value="student">Student </option>
+        <option value="faculty">Faculty </option>
+      </select>
+
+      <br />
+      <br />
+      <input type="submit" value="Submit" id="input-submit" />
+    </form>
+  </body>
+</html>
