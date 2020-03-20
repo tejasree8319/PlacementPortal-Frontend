@@ -1,44 +1,44 @@
 <html>
   <head>
     <title>
-      Students List
+      Faculty List
     </title>
     <script>
       function showdata() {
         $.ajax({
           type: 'get',
-          url: 'http://localhost:8000/student/all',
+          url: 'http://localhost:8000/faculty/all',
           dataType: 'json',
           success: function(response) {
             //alert(response);
             //var i=0;
 
             console.log(response.length);
-            var student_HTML = '';
+            var faculty_HTML = '';
             for (i = 0; i < response.length; i++) {
               var data = response[i];
-              student_HTML +=
+              faculty_HTML +=
                 '<tr><td>' +
-                data.studentId +
+                data.facultyId +
                 '</td><td>' +
-                data.studentName +
+                data.facultyName +
                 '</td><td>' +
-                data.studentEmail +
+                data.facultyEmail +
                 '</td><td>' +
-                data.studentContact +
+                data.facultyContact +
                 '</td><td>' +
-                data.studentGender +
+                data.facultyGender +
                 '</td><td>' +
-                data.studentDept +
+                data.facultyDept +
                 '</td></tr>';
-              console.log(data.studentId);
-              console.log(data.studentName);
-              console.log(data.studentEmail);
-              console.log(data.studentContact);
-              console.log(data.studentGender);
-              console.log(data.studentDept);
+              console.log(data.facultyId);
+              console.log(data.facultyName);
+              console.log(data.facultyEmail);
+              console.log(data.facultyContact);
+              console.log(data.facultyGender);
+              console.log(data.facultyDept);
             }
-            $('#student_details').append(student_HTML);
+            $('#faculty_details').append(faculty_HTML);
           },
           error: function() {
             alert('Error');
@@ -67,9 +67,9 @@
       </ul>
     </div>
   </nav>
-  <table id="student_details" border="1" class="table table-bordered">
+  <table id="faculty_details" border="1" class="table table-bordered">
     <br/>
-    <h1 style="text-align:center"> Student List</h1 style="text-align:center">
+    <h1 style="text-align:center"> Faculty List</h1 style="text-align:center">
     <tr>
       <th>Id</th>
       <th>Name</th>
