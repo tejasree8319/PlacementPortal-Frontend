@@ -1,44 +1,43 @@
 <html>
   <head>
     <title>
-      Students List
+      Placement List
     </title>
     <script>
       function showdata() {
         $.ajax({
           type: 'get',
-          url: 'http://localhost:8000/student/all',
+          url: 'http://localhost:8000/placement/all',
           dataType: 'json',
           success: function(response) {
             //alert(response);
-            //var i=0;
+           
 
             console.log(response.length);
-            var student_HTML = '';
-            for (i = 0; i < response.length; i++) {
+            var placement_HTML = '';
+            for (i = 0,j=1; i < response.length; i++,j++) {
               var data = response[i];
-              student_HTML +=
+              placement_HTML +=
                 '<tr><td>' +
-                data.studentId +
-                '</td><td>' +
-                data.studentName +
-                '</td><td>' +
-                data.studentEmail +
-                '</td><td>' +
-                data.studentContact +
-                '</td><td>' +
-                data.studentGender +
-                '</td><td>' +
-                data.studentDept +
+                j+
+                '</td><td>'+
+                // data.studentId.studentId +
+                // '</td><td>' +
+                data.companyId.companyName+
+                '</td><td>'+
+                data.companyId.companySector+
+                '</td><td>'+
+                data.jobId.jobPackage+
+                '</td><td>'+
+                data.jobId.selectedCount
                 '</td></tr>';
-              console.log(data.studentId);
-              console.log(data.studentName);
-              console.log(data.studentEmail);
-              console.log(data.studentContact);
-              console.log(data.studentGender);
-              console.log(data.studentDept);
+              //console.log(data.studentId.studentId);
+              console.log(data.companyId.companyName);
+              console.log(data.companyId.companySector);
+              console.log(data.jobId.jobPackage);
+              console.log(data.jobId.selectedCount);
             }
-            $('#student_details').append(student_HTML);
+            $('#placement_details').append(placement_HTML);
           },
           error: function() {
             alert('Error');
@@ -68,16 +67,16 @@
       </ul>
     </div>
   </nav>
-  <table id="student_details" border="1" class="table table-bordered">
+  <table id="placement_details" border="1" class="table table-bordered">
     <br/>
-    <h1 style="text-align:center"> Student List</h1 style="text-align:center">
+    <h1 style="text-align:center"> Placement List</h1 style="text-align:center">
     <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Contact</th>
-      <th>Gender</th>
-      <th>Department</th>
+      <th>S.No</th>
+      <!-- <th>Student Id</th> -->
+      <th>Company Name</th>
+      <th>Sector</th>
+      <th>Package</th>
+      <th>No.of students placed</th>
     </tr>
   </table>
 </body>
