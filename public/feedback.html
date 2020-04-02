@@ -1,0 +1,118 @@
+<html>
+  <head>
+    <title>
+      Register Form
+    </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+    <script> 
+    $(function(){
+      $("#includedContent").load("common.html"); 
+    });
+    </script> 
+    <!-- <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="./css/style.css" /> -->
+
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
+    <script>
+      $(document).ready(function() {
+        $('form').submit(function() {
+          var studentId = document.getElementById('studentId').value;
+          var jobId = document.getElementById('jobId').value;
+          var formData = {
+            studentId: studentId,
+            jobId: jobId
+          };
+          alert(studentId);
+          alert(jobId);
+          $.ajax({
+            type: 'post',
+            url: 'http://localhost:8000/feedback',
+            dataType: 'json',
+            data: formData,
+            success: function(response) {
+              console.log('Success');
+              alert('Local success callback');
+              window.location = 'http://localhost:8000/feedback/all';
+            },
+            error: function(jqXHR, status, err) {
+              console.log('Error');
+              alert('Error');
+            }
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <!-- <a class="navbar-brand" href="register.html">Logout</a> -->
+        </div>
+        <ul class="nav navbar-nav">
+          <li><a href="login.html"> Home</a></li>
+          <li><a href="register.html"></a></li>
+          <li><a href="studentlist.html">Students</a></li>
+          <li><a href="facultylist.html">Faculty</a></li>
+          <li><a href="joblist.html">Jobs</a></li>
+          <li><a href="placementlist.html">Placements</a></li>
+          <li><a href="feedback.html">Feedback</a></li>
+          <li><a>Logout</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div id="includedContent"></div>
+    <!-- <div class="sidenav">
+      <br />
+      <br />
+      <a href="login.html"> Home</a>
+      <a href="register.html">Register</a>
+      <a href="studentlist.html">Students</a>
+      <a href="facultylist.html">Faculty</a>
+      <a href="joblist.html">Jobs</a>
+      <a href="placementlist.html">Placements</a>
+      <a href="feedback.html">Feedback</a>
+      <a>Logout</a>
+    </div> -->
+    <form action="http://localhost:8000/feedback" method="POST">
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <h1 style="text-align:center">Feedbacks</h1 style="text-align:center">
+        <br/>
+      <br />
+      <input
+        type="text"
+        id="studentId"
+        name="studentId"
+        placeholder="StudentId"
+        required
+      /><br />
+      <input
+        type="text"
+        id="jobId"
+        name="jobId"
+        placeholder="JobId"
+        required
+      /><br />
+      <br />
+      <textarea
+        rows="5"
+        cols="60"
+        name="description"
+        placeholder="Feedback"
+      ></textarea>
+      <br />
+      <!-- <input
+        type="text"
+        id="feedback"
+        name="feedback"
+        placeholder="Feedback"
+        required -->
+      <br />
+      <input type="submit" value="Submit" id="input-submit" />
+    </form>
+  </body>
+</html>

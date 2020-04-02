@@ -1,0 +1,171 @@
+<html>
+  <head>
+    <title>
+      Job Form
+    </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+    <script> 
+    $(function(){
+      $("#includedContent").load("common.html"); 
+    });
+    </script> 
+    <!-- <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="./css/style.css" /> -->
+
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
+    <script>
+      $(document).ready(function() {
+        $('form').submit(function() {
+          var Name = document.getElementById('name').value;
+          var formData = {
+            Name: Name
+          };
+          alert(Name);
+          $.ajax({
+            type: 'post',
+            url: 'http://localhost:8000/job',
+            dataType: 'json',
+            data: formData,
+            success: function(response) {
+              console.log(response);
+              alert('Local success callback');
+            },
+            error: function(jqXHR, status, err) {
+              console.log('Error');
+              alert('Error');
+            }
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header"></div>
+        <ul class="nav navbar-nav">
+          <li><a> </a></li>
+          <li><a> </a></li>
+          <li><a> </a></li>
+          <li><a href="login.html">Home</a></li>
+          <li><a href="studentlist.html">Students</a></li>
+          <li><a href="facultylist.html">Faculty</a></li>
+          <li><a href="joblist.html">Jobs</a></li>
+          <li><a href="placementlist.html">Placements</a></li>
+          <li><a href="feedback.html">Feedback</a></li>
+          <li><a href="studentform.html">Student Form</a></li>
+          <li><a href="facultyform.html">Faculty Form</a></li>
+          <li><a href="jobform.html">Job Form</a></li>
+          <li><a>Logout</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div id="includedContent"></div>
+    <!-- <div class="sidenav">
+      <br />
+      <br />
+      <a href="login.html">Home</a>
+      <a href="studentlist.html">Students</a>
+      <a href="facultylist.html">Faculty</a>
+      <a href="joblist.html">Jobs</a>
+      <a href="placementlist.html">Placements</a>
+      <a href="feedback.html">Feedback</a>
+      <a href="studentform.html">Student Form</a>
+      <a href="facultyform.html">Faculty Form</a>
+      <a href="jobform.html">Job Form</a>
+      <a>Logout</a>
+    </div> -->
+    <form action="http://localhost:8000/job" method="POST">
+      <br />
+      <br />
+      <!-- <label for="uId">UserId:</label><br /> -->
+      <h1 style="text-align:center"> Job Form</h1 style="text-align:center">
+      <br/>
+      <input
+        type="text"
+        id="id"
+        name="id"
+        placeholder="Company Id"
+        required
+      /><br />
+      <input
+        type="text"
+        id="profile"
+        name="profile"
+        placeholder="Profile"
+        required
+      /><br />
+      <input
+        type="text"
+        id="type"
+        name="type"
+        placeholder="Type"
+        required
+      /><br />
+      <input
+        type="text"
+        id="description"
+        name="description"
+        placeholder="Description"
+        required
+      /><br />
+      <input
+        type="text"
+        id="skills"
+        name="skills"
+        placeholder="Skills"
+        required
+      /><br />
+      <input
+        type="text"
+        id="eligibility"
+        name="eligibility"
+        placeholder="Eligibility"
+        required
+      /><br />
+      <input
+        type="text"
+        id="slectionprocess"
+        name="selectionprocess"
+        placeholder="Selection Process"
+        required
+      /><br />
+      <input
+        type="package"
+        id="package"
+        name="package"
+        placeholder="Package"
+        required
+      /><br />
+      <input
+        type="text"
+        id="interviewloaction"
+        name="interviewlocation"
+        placeholder="Interview Location"
+        required
+      /><br />
+      <input
+        type="text"
+        id="joblocation"
+        name="joblocation"
+        placeholder="Job Location"
+        required
+      /><br />
+      <input
+        type="date"
+        id="date"
+        name="date"
+        placeholder="Date"
+        required
+      /><br />
+      <input
+        type="text"
+        id="count"
+        name="count"
+        placeholder="Selected Count"
+        required
+      /><br />
+      <input type="submit" value="Submit" id="input-submit" />
+    </form>
+  </body>
+</html>

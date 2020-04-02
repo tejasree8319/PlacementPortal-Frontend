@@ -1,41 +1,33 @@
 <html>
   <head>
     <title>
-      Register Form
+      Login Form
     </title>
-    <!-- <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="./css/style.css" />-->
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
-    <script> 
-      $(function(){
-        $("#includedContent").load("common.html"); 
-      });
-    </script> 
-   <script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
       $(document).ready(function() {
         $('form').submit(function() {
           var Id = document.getElementById('userId').value;
           var Password = document.getElementById('password').value;
-          var UserType = document.getElementById('userType').value;
           var formData = {
             userId: Id,
-            password: Password,
-            userType: UserType
+            password: Password
           };
-          alert(Id + Password + UserType);
+          alert(Id);
 
           $.ajax({
             type: 'post',
-            url: 'http://localhost:8000/register',
+            url: 'http://localhost:8000/login',
             dataType: 'json',
             data: formData,
             success: function(response) {
-              console.log('Success');
+              console.log(response);
               alert('Local success callback');
-              alert(UserType);
               alert(Id);
-              window.location = 'http://localhost:8000/' + UserType + '/' + Id;
+              window.location = 'http://localhost:8000/' + response.userType + '/' + response.userId;
             },
             error: function(jqXHR, status, err) {
               console.log('Error');
@@ -60,7 +52,7 @@
           <li><a> </a></li>
           <li><a> </a></li>
           <li><a> </a></li>
-          <li><a href="login.html"> Home</a></li>
+          <li><a href="login.html">Home</a></li>
           <li><a href="register.html">Register</a></li>
           <li><a href="studentlist.html">Students</a></li>
           <li><a href="facultylist.html">Faculty</a></li>
@@ -76,12 +68,11 @@
         </ul>
       </div>
     </nav>
-    <div id="includedContent"></div>
-    <!-- <div class="sidenav">
+    <div class="sidenav">
       <br />
       <br />
-      <a href="login.html"> Home</a>
-      <a href="regisetr.html">Register</a>
+      <a href="login.html">Home</a>
+      <a href="register.html">Register</a>
       <a href="studentlist.html">Students</a>
       <a href="facultylist.html">Faculty</a>
       <a href="joblist.html">Jobs</a>
@@ -91,14 +82,14 @@
       <a href="facultyform.html">Faculty Form</a>
       <a href="jobform.html">Job Form</a>
       <a>Logout</a>
-    </div> -->
-    <form action="http://localhost:8000/register" method="POST">
+    </div>
+    <form action="http://localhost:8000/login" method="POST">
       <br />
       <br />
       <br />
       <br />
       <br />
-      <h1 style="text-align:center">Register Form</h1 style="text-align:center">
+      <h1 style="text-align:center">Login Form</h1 style="text-align:center">
       <br/>
       <!-- <label for="uId">UserId:</label><br /> -->
       <input
@@ -115,14 +106,6 @@
         placeholder="Password"
         required
       /><br />
-      <select id="userType" name="userType" required>
-        <option value="" disabled selected hidden>UserType</option>
-
-        <option value="student">student </option>
-        <option value="faculty">faculty </option>
-      </select>
-
-      <br />
       <br />
       <input type="submit" value="Submit" id="input-submit" />
     </form>

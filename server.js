@@ -16,7 +16,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // define a simple route
 app.get('/', (req, res) => {
-  res.sendFile(path.join(public, 'register.html'));
+  //console.log('Enter');
+  res.sendFile(path.join(public, 'login.html'));
 });
 
 //app.use('/static', express.static(path.join(__dirname, '/styles/css')));

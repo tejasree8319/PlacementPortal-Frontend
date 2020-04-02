@@ -1,0 +1,162 @@
+<html>
+  <head>
+    <title>
+      Faculty Form
+    </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+    <script> 
+    $(function(){
+      $("#includedContent").load("common.html"); 
+    });
+    </script> 
+    <!-- <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="./css/style.css" /> -->
+
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
+    <script>
+      $(document).ready(function() {
+        $('form').submit(function() {
+          var Name = document.getElementById('name').value;
+          var formData = {
+            Name: Name
+          };
+          alert(Name);
+          $.ajax({
+            type: 'post',
+            url: 'http://localhost:8000/faculty',
+            dataType: 'json',
+            data: formData,
+            success: function(response) {
+              console.log(response);
+              alert('Local success callback');
+            },
+            error: function(jqXHR, status, err) {
+              console.log('Error');
+              alert('Error');
+            }
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+     <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header"></div>
+        <ul class="nav navbar-nav">
+          <li><a> </a></li>
+          <li><a> </a></li>
+          <li><a> </a></li>
+          <li><a href="login.html"> Home</a></li>
+          <li><a href="register.html"></a></li>
+          <li><a href="studentlist.html">Students</a></li>
+          <li><a href="facultylist.html">Faculty</a></li>
+          <li><a href="joblist.html">Jobs</a></li>
+          <li><a href="placementlist.html">Placements</a></li>
+          <li><a href="feedback.html">Feedback</a></li>
+          <li><a href="studentform.html">Student Form</a></li>
+          <li><a href="facultyform.html">Faculty Form</a></li>
+          <li><a>Logout</a></li>
+        </ul>
+      </div>
+    </nav> 
+    <div id="includedContent"></div>
+     <!-- <div class="sidenav">
+      <br />
+      <br />
+      <a href="login.html"> Home</a>
+      <a href="register.html">Register</a>
+      <a href="studentlist.html">Students</a>
+      <a href="facultylist.html">Faculty</a>
+      <a href="joblist.html">Jobs</a>
+      <a href="placementlist.html">Placements</a>
+      <a href="feedback.html">Feedback</a>
+      <a href="studentform.html">Student Form</a>
+      <a href="facultyform.html">Faculty Form</a>
+      <a>Logout</a>
+    </div>  -->
+    <form action="http://localhost:8000/faculty" method="POST">
+      <br />
+      <br />
+      <!-- <label for="uId">UserId:</label><br /> -->
+      <h1 style="text-align:center">Faculty Form</h1 style="text-align:center">
+      <br/>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Name"
+        required
+      /><br />
+      <input
+        type="text"
+        id="email"
+        name="email"
+        placeholder="Email"
+        required
+      /><br />
+      <input
+        type="text"
+        id="contact"
+        name="contact"
+        placeholder="Contact"
+        required
+      /><br />
+      <select id="gender" name="gender" required>
+      <option value="" disabled selected hidden>Gender</option>
+      <option value="male">Male </option>
+      <option value="female">Female </option>
+      </select>
+      <br />
+      <input
+        type="text"
+        id="designation"
+        name="designation"
+        placeholder="Designation"
+        required
+      /><br />
+      <input
+        type="text"
+        id="experience"
+        name="experience"
+        placeholder="Experience"
+        required
+      /><br />
+      <select id="dept" name="dept" required>
+        <option value="" disabled selected hidden>Department</option>
+        <option value="IT">IT </option>
+        <option value="CSE">CSE </option>
+        <option value="ECE">ECE </option>
+        <option value="EEE">EEE </option>
+        <option value="Chemical">Chemical </option>
+        <option value="Mechanical">Mechanical </option>
+        <option value="Civil">Civil </option>
+        <option value="BME">BME </option>
+        <option value="PHE">Pharmaceutical </option>
+      </select>
+      <br />
+      <input
+        type="text"
+        id="qualification"
+        name="qualification"
+        placeholder="Qualification"
+        required
+      /><br />
+      <input
+        type="file"
+        id="resume"
+        name="resume"
+        placeholder="Resume"
+        required
+      /><br />
+      <input
+        type="file"
+        id="photo"
+        name="photo"
+        placeholder="Photo"
+        required
+      /><br />
+      <input type="submit" value="Submit" id="input-submit" />
+    </form>
+  </body>
+</html>
