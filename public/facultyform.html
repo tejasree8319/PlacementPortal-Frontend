@@ -12,7 +12,31 @@
     <!-- <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="./css/style.css" /> -->
 
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
+    <script>
+      function showdata(){
+         var userId = localStorage.getItem('userId');
+         //console.log(userId);
+         $.ajax({
+         type: 'get',
+         url: 'http://localhost:8000/faculty/'+ userId,
+         dataType: 'json',
+         success: function(response) {
+           document.getElementById("name").setAttribute("value", response.facultyName);
+           document.getElementById("email").setAttribute("value", response.facultyEmail);
+           document.getElementById("contact").setAttribute("value", response.facultyContact);
+           $("#gender").val(response.facultyGender);
+           document.getElementById("designation").setAttribute("value", response.facultyDesignation);
+           document.getElementById("experience").setAttribute("value", response.facultyExperience);
+           $("#dept").val(response.facultyDept);
+           document.getElementById("qualification").setAttribute("value", response.facultyQualification);
+           document.getElementById("resume").setAttribute("value", response.facultyResume);
+           document.getElementById("photo").setAttribute("value", response.facultyPhoto);
+           console.log(response)
+           alert('Faculty Data');
+       }
+     });
+   }
+   </script>
     <script>
       $(document).ready(function() {
         $('form').submit(function() {
@@ -39,7 +63,7 @@
       });
     </script>
   </head>
-  <body>
+  <body onload="showdata()">
      <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header"></div>
@@ -104,8 +128,8 @@
       /><br />
       <select id="gender" name="gender" required>
       <option value="" disabled selected hidden>Gender</option>
-      <option value="male">Male </option>
-      <option value="female">Female </option>
+      <option value="Male">Male </option>
+      <option value="Female">Female </option>
       </select>
       <br />
       <input
@@ -132,7 +156,7 @@
         <option value="Mechanical">Mechanical </option>
         <option value="Civil">Civil </option>
         <option value="BME">BME </option>
-        <option value="PHE">Pharmaceutical </option>
+        <option value="PHE">PHE </option>
       </select>
       <br />
       <input
