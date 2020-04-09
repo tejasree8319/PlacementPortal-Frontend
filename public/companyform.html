@@ -1,0 +1,82 @@
+<html>
+  <head>
+    <title>
+      Company Form
+    </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script> 
+    $(function(){
+      $("#includedContent").load("common.html"); 
+    });
+    </script> 
+    <script>
+     $(document).ready(function() {
+        $('form').submit(function() {
+          var companyName = document.getElementById('name').value;
+          var formData = {
+            companyName: companyName
+          };
+          alert(companyName);
+          $.ajax({
+            type: 'post',
+            url: 'http://localhost:8000/company',
+            dataType: 'json',
+            data: formData,
+            success: function(response) {
+              console.log(response);
+              alert('Local success callback');
+            },
+            error: function(jqXHR, status, err) {
+              console.log('Error');
+              alert('Error');
+            }
+          });
+        });
+      });
+    </script>
+    </head>
+    <body>
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+          <div class="navbar-header"></div>
+          <ul class="nav navbar-nav">
+            <li><a> </a></li>
+            <li><a> </a></li>
+            <li><a> </a></li>
+            <li><a href="login.html">Home</a></li>
+            <li><a href="studentlist.html">Students</a></li>
+            <li><a href="facultylist.html">Faculty</a></li>
+            <li><a href="joblist.html">Jobs</a></li>
+            <li><a href="placementlist.html">Placements</a></li>
+            <li><a href="feedback.html">Feedback</a></li>
+            <li><a href="studentform.html">Student Form</a></li>
+            <li><a href="facultyform.html">Faculty Form</a></li>
+            <li><a href="jobform.html">Job Form</a></li>
+            <li><a>Logout</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div id="includedContent"></div>
+      <form action="http://localhost:8000/company" method="POST">
+        <br />
+        <br />
+        <h1 style="text-align:center"> Company Form</h1 style="text-align:center">
+        <br/>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="companyName" required><br>
+        <label for="name">Description</label>
+        <textarea
+        rows="5"
+        cols="60"
+        name="companyDescription"
+        required
+        ></textarea>
+        <br />
+        <br/>
+        <label for="name">Sector</label>
+        <input type="text" id="sector" name="companySector" required><br>
+        <input type="submit" value="Submit" id="input-submit" />
+      </form>
+    </body>
+  </html>
+  

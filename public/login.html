@@ -21,23 +21,22 @@
             userId: Id,
             password: Password
           };
-          alert(Id);
-
           $.ajax({
             type: 'post',
             url: 'http://localhost:8000/login',
             dataType: 'json',
             data: formData,
             success: function(response) {
-              console.log(response);
+              var login=JSON.stringify(response);
+              localStorage.setItem('userInfo', login);
               alert('Local success callback');
-              alert(Id);
-              //window.location = 'http://localhost:8000/' + response.userType + '/' + response.userId;
-              localStorage.setItem('userId', response.userId);
-              if(response.userType=='student')
+              var user=localStorage.getItem('userInfo')
+              var data=JSON.parse(user)
+             // alert(data.userType)
+              if(data.userType=='student')
               {
                 window.location="/studentform.html"
-               }
+              }
               else
               {
                 window.location='/facultyform.html'
@@ -46,10 +45,6 @@
             error: function(jqXHR, status, err) {
               console.log('Error');
               alert('Error');
-            },
-            complete: function(jqXHR, status) {
-              console.log('Complete');
-              alert('Local completion callback.');
             }
           });
         });

@@ -31,11 +31,16 @@
             dataType: 'json',
             data: formData,
             success: function(response) {
-              console.log('Success');
+             // console.log(response.userId)
+              var register=JSON.stringify(response);
+              console.log(register)
+              localStorage.setItem('userInfo', register);
+              //localStorage.setItem('user', '123');
               alert('Local success callback');
-              alert(UserType);
-              alert(Id);
-              window.location = 'http://localhost:8000/' + UserType + '/' + Id;
+              // alert(UserType);
+              // alert(Id);
+             window.location = 'http://localhost:8000/' + UserType + '/' + Id;
+              
             },
             error: function(jqXHR, status, err) {
               console.log('Error');

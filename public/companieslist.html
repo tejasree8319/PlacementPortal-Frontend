@@ -1,38 +1,37 @@
 <html>
   <head>
     <title>
-      Students List
+      Companies List
     </title>
+    <script>
+      function myFunction(value) {
+        localStorage.setItem('companyName', value);
+        alert(value)
+        window.location='/viewcompany.html'
+      }
+      </script>
     <script>
       function showdata() {
         $.ajax({
           type: 'get',
-          url: 'http://localhost:8000/student/all',
+          url: 'http://localhost:8000/company/all',
           dataType: 'json',
           success: function(response) {
-            //alert(response);
-            //var i=0;
-
-            console.log(response.length);
-            var student_HTML = '';
-            for (i = 0; i < response.length; i++) {
+            console.log(response);
+            var company_HTML=''
+            for (i = 0,j=1; i < response.length; i++,j++) {
               var data = response[i];
-              student_HTML +=
+              var link='http://localhost:8000/company/'+data._id;
+              //console.log(link)
+              company_HTML+=
                 '<tr><td>' +
-                data.studentId +
-                '</td><td>' +
-                data.studentName +
-                '</td><td>' +
-                data.studentEmail +
-                '</td><td>' +
-                data.studentContact +
-                '</td><td>' +
-                data.studentGender +
-                '</td><td>' +
-                data.studentDept +
+                j+
+                '</td><td>'+
+                data.companyLogo+
+                '</td><td>'+'<button value='+data._id+' onclick="myFunction(this.value)">'+data.companyName+'</button>'+
                 '</td></tr>';
-            }
-            $('#student_details').append(student_HTML);
+              }
+             $('#company_details').append(company_HTML); 
           },
           error: function() {
             alert('Error');
@@ -74,19 +73,19 @@
       <a href="joblist.html">Jobs</a>
       <a href="placementlist.html">Placements</a>
       <a href="feedback.html">Feedback</a>
+      <a href="jobform.html">Job Form</a>
+      <a href="companyform.html">Company Form</a>
+      <a href="companieslist.html">Companies List</a>
       <a>Logout</a>
     </div>
   </nav>
-  <table id="student_details" border="1" class="table table-bordered">
+  <table id="company_details" border="1" class="table table-bordered">
     <br/>
-    <h1 style="text-align:center"> Student List</h1 style="text-align:center">
+    <h1 style="text-align:center"> Companies List</h1 style="text-align:center">
     <tr>
-      <th>Id</th>
+      <th>S.No</th>
+      <th>Logo</th>
       <th>Name</th>
-      <th>Email</th>
-      <th>Contact</th>
-      <th>Gender</th>
-      <th>Department</th>
     </tr>
   </table>
 </body>

@@ -3,7 +3,7 @@
     <title>
       Job Form
     </title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script> 
     $(function(){
       $("#includedContent").load("common.html"); 
@@ -14,13 +14,31 @@
 
     <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
     <script>
+      function showdata(){
+        $.ajax({
+         type: 'get',
+         url: 'http://localhost:8000/company/all',
+         dataType: 'json',
+         success: function(response){
+          // alert(response.length);
+           for(i=0;i<response.length;i++)
+           {
+             var data=response[i];
+             var div_data="<option value="+data._id+">"+data.companyName+"</option>";
+             $(div_data).appendTo('#companyId'); 
+           }
+         }
+        });
+      }
+    </script>
+    <script>
       $(document).ready(function() {
         $('form').submit(function() {
-          var Name = document.getElementById('name').value;
+          var companyId = document.getElementById('id').value;
           var formData = {
-            Name: Name
+            companyId: companyId
           };
-          alert(Name);
+          alert(companyId);
           $.ajax({
             type: 'post',
             url: 'http://localhost:8000/job',
@@ -39,7 +57,7 @@
       });
     </script>
   </head>
-  <body>
+  <body onload="showdata()">
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header"></div>
@@ -78,93 +96,35 @@
     <form action="http://localhost:8000/job" method="POST">
       <br />
       <br />
-      <!-- <label for="uId">UserId:</label><br /> -->
       <h1 style="text-align:center"> Job Form</h1 style="text-align:center">
       <br/>
-      <input
-        type="text"
-        id="id"
-        name="id"
-        placeholder="Company Id"
-        required
-      /><br />
-      <input
-        type="text"
-        id="profile"
-        name="profile"
-        placeholder="Profile"
-        required
-      /><br />
-      <input
-        type="text"
-        id="type"
-        name="type"
-        placeholder="Type"
-        required
-      /><br />
-      <input
-        type="text"
-        id="description"
-        name="description"
-        placeholder="Description"
-        required
-      /><br />
-      <input
-        type="text"
-        id="skills"
-        name="skills"
-        placeholder="Skills"
-        required
-      /><br />
-      <input
-        type="text"
-        id="eligibility"
-        name="eligibility"
-        placeholder="Eligibility"
-        required
-      /><br />
-      <input
-        type="text"
-        id="slectionprocess"
-        name="selectionprocess"
-        placeholder="Selection Process"
-        required
-      /><br />
-      <input
-        type="package"
-        id="package"
-        name="package"
-        placeholder="Package"
-        required
-      /><br />
-      <input
-        type="text"
-        id="interviewloaction"
-        name="interviewlocation"
-        placeholder="Interview Location"
-        required
-      /><br />
-      <input
-        type="text"
-        id="joblocation"
-        name="joblocation"
-        placeholder="Job Location"
-        required
-      /><br />
-      <input
-        type="date"
-        id="date"
-        name="date"
-        placeholder="Date"
-        required
-      /><br />
-      <input
-        type="text"
-        id="count"
-        name="count"
-        placeholder="Selected Count"
-        required
-      /><br />
+      <label for="name">Company Id:</label>
+      <select id="companyId" name="companyId" required>
+        <option value="" disabled selected hidden>Select Company</option>
+      </select>
+      <br />
+      <label for="name">Profile</label>
+      <input type="text" id="profile" name="jobProfile" required><br>
+      <label for="name">Type</label>
+      <input type="text" id="type" name="jobType" required><br>
+      <label for="name">Description</label>
+      <input type="text" id="description" name="jobDescription" required><br>
+      <label for="name">Skills</label>
+      <input type="text" id="skills" name="jobSkills" required><br>
+      <label for="name">Eligibility</label>
+      <input type="text" id="eligibility" name="jobEligibility" required><br>
+      <label for="name">Selection Process</label>
+      <input type="text" id="selection process" name="jobSelectionProcess" required><br>
+      <label for="name">Package</label>
+      <input type="text" id="package" name="jobPackage" required><br>
+      <label for="name">Interview Location</label>
+      <input type="text" id="interview location" name="interviewLocation" required><br>
+      <label for="name">Job Location</label>
+      <input type="text" id="job location" name="jobLocation" required><br>
+      <label for="name">Date</label>
+      <input type="date" id="date" name="jobDate" required><br>
+      <label for="name">Selected Count</label>
+      <input type="text" id="selected count" name="selectedCount" required><br>
       <input type="submit" value="Submit" id="input-submit" />
     </form>
   </body>

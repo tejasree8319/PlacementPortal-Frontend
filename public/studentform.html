@@ -15,11 +15,11 @@
     </script> 
     <script>
        function showdata(){
-          var userId = localStorage.getItem('userId');
-          //console.log(userId);
+          var user=localStorage.getItem('userInfo')
+          var data=JSON.parse(user)
           $.ajax({
           type: 'get',
-          url: 'http://localhost:8000/student/'+ userId,
+          url: 'http://localhost:8000/student/'+ data.userId,
           dataType: 'json',
           success: function(response) {
             document.getElementById("name").setAttribute("value", response.studentName);
@@ -43,7 +43,6 @@
             document.getElementById("resume").setAttribute("value", response.studentResume);
             document.getElementById("photo").setAttribute("value", response.studentPhoto);
             console.log(response)
-            alert('Student Data');
         }
       });
     }
@@ -115,36 +114,24 @@
       <!-- <label for="uId">UserId:</label><br /> -->
       <h1 style="text-align:center">Student Form</h1 style="text-align:center">
       <br/>
-      <input
-        type="text"
-        id="name"
-        name="name"
-        placeholder="Name"
-        required
-      /><br />
-      <input
-        type="text"
-        id="email"
-        name="email"
-        placeholder="Email"
-        required
-      /><br />
-      <input
-        type="text"
-        id="contact"
-        name="contact"
-        placeholder="Contact"
-        required
-      /><br />
-      <select id="gender" name="gender" required>
-        <option value="" disabled selected hidden>Gender</option>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="studentName" required><br>
+      <label for="name">Email:</label>
+      <input type="text" id="email" name="studentEmail" required><br>
+      <label for="name">Contact:</label>
+      <input type="text" id="contact" name="studentContact" required><br>
+      <label for="name">Gender:</label>
+      <select id="gender" name="studentGender" required>
+        <option value="" disabled selected hidden></option>
         <option value="Male">Male </option>
         <option value="Female">Female </option>
-        </select>
-        <br />
-      <input type="date" id="dob" name="dob" placeholder="DOB" required ><br />
-      <select id="dept" name="dept" required>
-        <option value="" disabled selected hidden>Department</option>
+      </select>
+      <br />
+      <label for="name">DOB:</label>
+      <input type="date" id="dob" name="studentDob" required><br>
+      <label for="name">Department:</label>
+      <select id="dept" name="studentDept" required>
+        <option value="" disabled selected hidden></option>
         <option value="IT">IT </option>
         <option value="CSE">CSE </option>
         <option value="ECE">ECE </option>
@@ -155,68 +142,25 @@
         <option value="BME">BME </option>
         <option value="PHE">PHE </option>
       </select>
-      <br />
-      <input
-        type="text"
-        id="temp"
-        name="temp"
-        placeholder="Temporary Address"
-      /><br />
-      <input
-        type="text"
-        id="permanent"
-        name="permanent"
-        placeholder="Permanent Address"
-        required
-      /><br />
-      <input
-        type="text"
-        id="batch"
-        name="batch"
-        placeholder="Batch"
-        required
-      /><br />
-      <input
-        type="text"
-        id="ssc"
-        name="ssc"
-        placeholder="SSC Percentage"
-        required
-      /><br />
-      <input
-        type="text"
-        id="inter"
-        name="inter"
-        placeholder="Intermediate Percentage"
-        required
-      /><br />
-      <input
-        type="text"
-        id="diploma"
-        name="diploma"
-        placeholder="Diploma Percentage"
-      /><br />
-      <input
-        type="text"
-        id="btech"
-        name="btech"
-        placeholder="B.Tech Percentage"
-        required
-      /><br />
-      <input
-        type="file"
-        id="resume"
-        name="resume"
-        placeholder="Resume"
-        required
-      /><br />
-      <input
-        type="file"
-        id="photo"
-        name="photo"
-        placeholder="Photo"
-        required
-      /><br />
+      <br/>
+      <label for="name">Temporary Address:</label>
+      <input type="text" id="temp" name="studentTempAddress" ><br>
+      <label for="name">Permanent Address:</label>
+      <input type="text" id="permanent" name="studentPermanentAddress" required><br>
+      <label for="name">Batch:</label>
+      <input type="text" id="batch" name="studentBatch" required><br>
+      <label for="name">SSC Percentage:</label>
+      <input type="text" id="ssc" name="studentSSCMarks" required><br>
+      <label for="name">Inter Percentage:</label>
+      <input type="text" id="inter" name="studentInterMarks" required><br>
+      <label for="name">Diploma Percentage:</label>
+      <input type="text" id="diploma" name="studentDiplomaMarks" ><br>
+      <label for="name">B.Tech Percentage:</label>
+      <input type="text" id="btech" name="studentBTechMarks" required><br>
+      <label for="name">Resume:</label>
+      <input type="file" id="resume" name="studentResume" required><br>
+      <label for="name">Photo:</label>
+      <input type="file" id="photo" name="studentPhoto" required><br>
       <input type="submit" value="Submit" id="input-submit" />
     </form>
   </body>
