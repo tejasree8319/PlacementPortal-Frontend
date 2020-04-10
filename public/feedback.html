@@ -16,14 +16,14 @@
     <script>
       $(document).ready(function() {
         $('form').submit(function() {
-          var studentId = document.getElementById('studentId').value;
-          var jobId = document.getElementById('jobId').value;
-          var formData = {
-            studentId: studentId,
-            jobId: jobId
-          };
-          alert(studentId);
-          alert(jobId);
+          // var studentId = document.getElementById('studentId').value;
+          // var jobId = document.getElementById('jobId').value;
+          // var formData = {
+          //   studentId: studentId,
+          //   jobId: jobId
+          // };
+          // alert(studentId);
+          // alert(jobId);
           $.ajax({
             type: 'post',
             url: 'http://localhost:8000/feedback',
