@@ -20,7 +20,7 @@
             console.log(response);
             document.getElementById('name').setAttribute("value",response.companyName)
             document.getElementById('logo').setAttribute("value",response.companyLogo)
-            document.getElementById('description').setAttribute("value",response.companyDescription)
+            $("textarea#description").val(response.companyDescription);
             document.getElementById('sector').setAttribute("value",response.companySector)     
           }
         });

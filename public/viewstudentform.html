@@ -1,0 +1,123 @@
+<html>
+  <head>
+    <title>
+      View Student Form
+    </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+    <script> 
+    $(function(){
+      $("#includedContent").load("common.html"); 
+    });
+    </script> 
+    <script>
+      function showdata(){
+         var user=localStorage.getItem('userInfo')
+         var data=JSON.parse(user)
+         $.ajax({
+         type: 'get',
+         url: 'http://localhost:8000/student/'+ data.userId,
+         dataType: 'json',
+         success: function(response) {
+           document.getElementById("name").setAttribute("value", response.studentName);
+           document.getElementById("email").setAttribute("value", response.studentEmail);
+           document.getElementById("contact").setAttribute("value", response.studentContact);
+           //document.getElementById("gender").setAttribute("value", response.studentGender);
+           $("#gender").val(response.studentGender);
+           var today=response.studentDob;
+           date=today.slice(0,10);
+           console.log(date)
+           document.getElementById("dob").setAttribute("value", date);
+           $("#dept").val(response.studentDept);
+          // document.getElementById("dept").setAttribute("value", response.studentDept);
+           document.getElementById("temp").setAttribute("value", response.studentTempAddress);
+           document.getElementById("permanent").setAttribute("value", response.studentPermanentAddress);
+           document.getElementById("batch").setAttribute("value", response.studentBatch);
+           document.getElementById("ssc").setAttribute("value", response.studentSSCMarks);
+           document.getElementById("inter").setAttribute("value", response.studentInterMarks);
+           document.getElementById("diploma").setAttribute("value", response.studentDiplomaMarks);
+           document.getElementById("btech").setAttribute("value", response.studentBTechMarks);
+           document.getElementById("resume").setAttribute("value", response.studentResume);
+           document.getElementById("photo").setAttribute("value", response.studentPhoto);
+           console.log(response)
+       }
+     });
+   }
+   </script>
+    </head>
+    <body onload="showdata()">
+     <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header"></div>
+        <ul class="nav navbar-nav">
+          <li><a> </a></li>
+          <li><a> </a></li>
+          <li><a> </a></li>
+          <li><a href="login.html"> Home</a></li>
+          <li><a href="register.html"></a></li>
+          <li><a href="studentlist.html">Students</a></li>
+          <li><a href="facultylist.html">Faculty</a></li>
+          <li><a href="joblist.html">Jobs</a></li>
+          <li><a href="placementlist.html">Placements</a></li>
+          <li><a href="feedback.html">Feedback</a></li>
+          <li><a href="studentform.html">Student Form</a></li>
+          <li><a href="facultyform.html">Faculty Form</a></li>
+          <li><a>Logout</a></li>
+        </ul>
+      </div>
+    </nav> 
+    <div id="includedContent"></div>
+    <form action="http://localhost:8000/student" method="GET">
+     <br />
+     <br />
+     <h1 style="text-align:center">Student Form</h1 style="text-align:center">
+     <br/>
+     <label for="name">Name:</label>
+      <input type="text" id="name" name="studentName" disabled="true" required><br>
+      <label for="name">Email:</label>
+      <input type="text" id="email" name="studentEmail" disabled="true" required><br>
+      <label for="name">Contact:</label>
+      <input type="text" id="contact" name="studentContact" disabled="true" required><br>
+      <label for="name">Gender:</label>
+      <select id="gender" name="studentGender" disabled="true" required>
+        <option value="" disabled selected hidden></option>
+        <option value="Male">Male </option>
+        <option value="Female">Female </option>
+      </select>
+      <br />
+      <label for="name">DOB:</label>
+      <input type="date" id="dob" name="studentDob" disabled="true" required><br>
+      <label for="name">Department:</label>
+      <select id="dept" name="studentDept" disabled="true" required>
+        <option value="" disabled selected hidden></option>
+        <option value="IT">IT </option>
+        <option value="CSE">CSE </option>
+        <option value="ECE">ECE </option>
+        <option value="EEE">EEE </option>
+        <option value="Chemical">Chemical </option>
+        <option value="Mechanical">Mechanical </option>
+        <option value="Civil">Civil </option>
+        <option value="BME">BME </option>
+        <option value="PHE">PHE </option>
+      </select>
+      <br/>
+      <label for="name">Temporary Address:</label>
+      <input type="text" id="temp" name="studentTempAddress" disabled="true" ><br>
+      <label for="name">Permanent Address:</label>
+      <input type="text" id="permanent" name="studentPermanentAddress" disabled="true" required><br>
+      <label for="name">Batch:</label>
+      <input type="text" id="batch" name="studentBatch" disabled="true" required><br>
+      <label for="name">SSC Percentage:</label>
+      <input type="text" id="ssc" name="studentSSCMarks" disabled="true" required><br>
+      <label for="name">Inter Percentage:</label>
+      <input type="text" id="inter" name="studentInterMarks" disabled="true" required><br>
+      <label for="name">Diploma Percentage:</label>
+      <input type="text" id="diploma" name="studentDiplomaMarks" disabled="true" ><br>
+      <label for="name">B.Tech Percentage:</label>
+      <input type="text" id="btech" name="studentBTechMarks" disabled="true" required><br>
+      <label for="name">Resume:</label>
+      <input type="file" id="resume" name="studentResume" disabled="true" required><br>
+      <label for="name">Photo:</label>
+      <input type="file" id="photo" name="studentPhoto" disabled="true" required><br>
+     </form>
+  </body>
+</html>

@@ -9,28 +9,62 @@
           type: 'get',
           url: 'http://localhost:8000/job/all',
           dataType: 'json',
-          success: function(response) {
-            //alert(response);
-            //var i=0;
+          success: function (response) {
             console.log(response);
+            // for (i = 0; i < 1; i++) {
+            //   var data = response[i];
+            //   console.log(data);
+            //   $('#card1').text(data.jobProfile);
+            //   $('#card2').text(data.jobType);
+            //   $('#card3').append(data.jobDescription);
+            //   $('#card4').text(data.jobSkills);
+            //   $('#card5').text(data.jobEligibility);
+            //   $('#card6').append(data.jobSelectionProcess);
+            //   $('#card7').text(data.jobPackage);
+            //   $('#card8').text(data.interviewLocation);
+            //   $('#card9').append(data.jobLocation);
+            //   $('#card10').text(data.jobDate);
+            //   $('#card11').text(data.selectedCount);
+            //   $('card12').text(data.companyId.companyName);
+            // }
           },
-          error: function() {
+          error: function () {
             alert('Error');
-          }
+          },
         });
       }
     </script>
-    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="./css/style.css" /> -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- <script>
+      $(function () {
+        $('#includedContent').load('common.html');
+      });
+    </script> -->
+    <style>
+      .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        transition: 0.3s;
+        width: 90%;
+      }
+
+      .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+      }
+
+      .container {
+        padding: 12px 16px;
+      }
+    </style>
   </head>
   <body onload="showdata()">
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <!-- <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
-          <!-- <a class="navbar-brand" href="register.html">Logout</a> -->
-        </div>
+           <a class="navbar-brand" href="register.html">Logout</a> -->
+    <!-- </div>
         <ul class="nav navbar-nav">
           <li><a> Home</a></li>
           <li><a href="studentlist.html">Students</a></li>
@@ -38,11 +72,11 @@
           <li><a href="joblist.html">Jobs</a></li>
           <li><a href="placementlist.html">Placements</a></li>
           <li><a href="feedback.html">Feedback</a></li>
-          <li><a>Logout</a></li>
-          <!-- <li class="active"><a href="new_customer.html">New Customer</a></li> -->
-        </ul>
-      </div>
-      <div class="sidenav">
+          <li><a>Logout</a></li> -->
+    <!-- <li class="active"><a href="new_customer.html">New Customer</a></li> -->
+    <!-- </ul>
+      </div>  -->
+    <!-- <div class="sidenav">
         <br />
         <br />
         <a> Home</a>
@@ -52,7 +86,25 @@
         <a href="placementlist.html">Placements</a>
         <a href="feedback.html">Feedback</a>
         <a>Logout</a>
+      </div> -->
+    <!-- </nav> -->
+    <!-- <div id="includedContent"></div> -->
+    <div id="cards">
+      <div class="card" id="card1">
+        <div class="container"></div>
+        <p>Company Name:Sigmoid</p>
+        <p>Profile:Software Dev Engineer</p>
+        <p>Type:FTE</p>
+        <p>Description:njnanjd</p>
+        <p>Skills:dkll</p>
+        <p>Eligibility:ndj</p>
+        <p>Selection Process:NKCJJAA</p>
+        <p>Package:14</p>
+        <p>Interview Location:Bangalore</p>
+        <p>Job Location:Bangalore</p>
+        <p>Date:10-05-2019</p>
+        <p>Selected Count:2</p>
       </div>
-    </nav>
+    </div>
   </body>
 </html>

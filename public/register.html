@@ -16,14 +16,14 @@
       $(document).ready(function() {
         $('form').submit(function() {
           var Id = document.getElementById('userId').value;
-          var Password = document.getElementById('password').value;
+          var password=document.getElementById('password').value;
           var UserType = document.getElementById('userType').value;
           var formData = {
             userId: Id,
-            password: Password,
+            password:password,
             userType: UserType
           };
-          alert(Id + Password + UserType);
+          alert(Id);
 
           $.ajax({
             type: 'post',
@@ -31,25 +31,22 @@
             dataType: 'json',
             data: formData,
             success: function(response) {
-             // console.log(response.userId)
               var register=JSON.stringify(response);
-              console.log(register)
               localStorage.setItem('userInfo', register);
-              //localStorage.setItem('user', '123');
               alert('Local success callback');
-              // alert(UserType);
-              // alert(Id);
-             window.location = 'http://localhost:8000/' + UserType + '/' + Id;
-              
+              var user=localStorage.getItem('userInfo')
+              var data=JSON.parse(user)
+              window.location="/"+data.userType+"form.html"
             },
-            error: function(jqXHR, status, err) {
-              console.log('Error');
-              alert('Error');
-            },
-            complete: function(jqXHR, status) {
-              console.log('Complete');
-              alert('Local completion callback.');
+            error: function (xhr, ajaxOptions, thrownError) {
+             alert(xhr.status);
+             alert(xhr.responseText);
+             alert(thrownError);
             }
+            // error: function(jqXHR, status, err) {
+            //   console.log('Error');
+            //   alert('Error');
+            // }
           });
         });
       });
@@ -109,7 +106,7 @@
       <input
         type="text"
         id="userId"
-        name="uId"
+        name="userId"
         placeholder="UserId"
         required
       /><br />
