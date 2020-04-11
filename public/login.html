@@ -32,14 +32,13 @@
               alert('Local success callback');
               var user=localStorage.getItem('userInfo')
               var data=JSON.parse(user)
-             // alert(data.userType)
               if(data.userType=='student')
               {
-                window.location="/studentform.html"
+                window.location="/viewstudentform.html"
               }
               else
               {
-                window.location='/facultyform.html'
+                window.location='/viewfacultyform.html'
               }
             },
             error: function(jqXHR, status, err) {
@@ -105,7 +104,7 @@
       <input
         type="text"
         id="userId"
-        name="uId"
+        name="userId"
         placeholder="UserId"
         required
       /><br />
