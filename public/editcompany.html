@@ -34,8 +34,14 @@
          $('form').submit(function() {
           var data=localStorage.getItem('companyName');
            var companyName = document.getElementById('name').value;
+           var companyLogo = document.getElementById('logo').value;
+           var companyDescription = document.getElementById('description').value;
+           var companySector = document.getElementById('sector').value;
            var formData = {
-             companyName: companyName
+             companyName: companyName,
+             companyLogo:companyLogo,
+             companyDescription:companyDescription,
+             companySector:companySector
            };
            alert(companyName);
            $.ajax({
@@ -44,9 +50,8 @@
              dataType: 'json',
              data: formData,
              success: function(response) {
-               console.log(response);
-               alert(response)
                alert('Local success callback');
+               window.location='/viewcompany.html'
              },
              error: function(jqXHR, status, err) {
                console.log('Error');
