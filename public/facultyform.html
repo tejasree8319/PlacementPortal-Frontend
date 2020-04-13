@@ -45,7 +45,7 @@
           var Gender = document.getElementById('gender').value;
           var Designation = document.getElementById('designation').value;
           var Experience = document.getElementById('experience').value;
-          var Department = document.getElementById('department').value;
+          var Department = document.getElementById('dept').value;
           var Qualification = document.getElementById('qualification').value;
           var Resume = document.getElementById('resume').value;
           var Photo = document.getElementById('photo').value;
@@ -56,10 +56,10 @@
             facultyGender:Gender,
             facultyDesignation:Designation,
             facultyExperience:Experience,
-            facultyDepartment:Department,
+            facultyDept:Department,
             facultyQualification:Qualification,
-            facultyResume:Resume,
-            facultyPhoto:Photo
+            // facultyResume:Resume,
+            // facultyPhoto:Photo
           };
           alert(Name);
           var user=localStorage.getItem('userInfo')
@@ -161,7 +161,7 @@
       <label for="name">Resume:</label>
       <input type="file" id="resume" name="facultyResume" ><br>
       <label for="name">Photo:</label>
-      <input type="file" id="photo" name="facultyPhoto" required><br>
+      <input type="file" id="photo" name="facultyPhoto" ><br>
       <input type="submit" value="Submit" id="input-submit" />
     </form>
   </body>

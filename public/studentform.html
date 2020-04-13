@@ -83,9 +83,11 @@
             // studentPhoto:Photo
           };
           alert(Name);
+          var user=localStorage.getItem('userInfo')
+          var data=JSON.parse(user)
           $.ajax({
             type: 'patch',
-            url: 'http://localhost:8000/student',
+            url: 'http://localhost:8000/student/'+data.userId,
             dataType: 'json',
             data: formData,
             success: function(response) {
