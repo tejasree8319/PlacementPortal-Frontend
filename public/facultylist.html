@@ -7,12 +7,9 @@
       function showdata() {
         $.ajax({
           type: 'get',
-          url: 'http://localhost:8000/faculty/all',
+          url: 'http://localhost:8000/faculty/all/All',
           dataType: 'json',
           success: function(response) {
-            //alert(response);
-            //var i=0;
-
             console.log(response.length);
             var faculty_HTML = '';
             for (i = 0; i < response.length; i++) {
@@ -20,6 +17,8 @@
               faculty_HTML +=
                 '<tr><td>' +
                 data.facultyId +
+                '</td><td>' +
+                '<img src=./assets/images/'+ data.facultyId+'.jpg width="42" height="42">'+
                 '</td><td>' +
                 data.facultyName +
                 '</td><td>' +
@@ -45,6 +44,43 @@
           }
         });
       }
+      function GetSelectedTextValue(faculty) {
+        $("#tbodyid").empty();
+        var selectedText = faculty.options[faculty.selectedIndex].innerHTML;
+        console.log(selectedText)
+        $.ajax({
+          type:'get',
+          url:'http://localhost:8000/faculty/all/'+selectedText,
+          dataType:'json',
+          success:function(response){
+            var faculty_HTML=''
+            for (i = 0,j=1; i < response.length; i++,j++) {
+              var data = response[i];
+              faculty_HTML+=
+              '<tr><td>' +
+                data.facultyId +
+                '</td><td>' +
+                '<img src=./assets/images/'+ data.facultyId+'.jpg width="42" height="42">'+
+                '</td><td>' +
+                data.facultyName +
+                '</td><td>' +
+                data.facultyEmail +
+                '</td><td>' +
+                data.facultyContact +
+                '</td><td>' +
+                data.facultyGender +
+                '</td><td>' +
+                data.facultyDept +
+                '</td></tr>';
+            }
+             $('#tbodyid').append(faculty_HTML);
+           
+          },
+          error: function() {
+            alert('Error');
+          }
+        });
+    }
     </script>
     <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="./css/style.css" />
@@ -60,7 +96,21 @@
       <ul class="nav navbar-nav">
         <li><a> Home</a></li>
         <li><a href="studentlist.html">Students</a></li>
-        <li><a href="facultylist.html">Faculty</a></li>
+        <li>
+          <select id="faculty" onchange="GetSelectedTextValue(this)">
+            <option value="" disabled selected hidden>Faculty</option>
+            <option value="CSE">CSE</option>
+            <option value="IT">IT</option>
+            <option value="ECE">ECE</option>
+            <option value="EEE">EEE</option>
+            <option value="Chemical">Chemical</option>
+            <option value="Mechanical">Mechanical</option>
+            <option value="Civil">Civil</option>
+            <option value="BME">BME</option>
+            <option value="PHE">PHE</option>
+            <option value="All">All</option>
+          </select>
+        </li>
         <li><a href="joblist.html">Jobs</a></li>
         <li><a href="placementlist.html">Placements</a></li>
         <li><a href="feedback.html">Feedback</a></li>
@@ -83,13 +133,15 @@
   <table id="faculty_details" border="1" class="table table-bordered">
     <br/>
     <h1 style="text-align:center"> Faculty List</h1 style="text-align:center">
-    <tr>
+    <thead>
       <th>Id</th>
+      <th>Photo</th>
       <th>Name</th>
       <th>Email</th>
       <th>Contact</th>
       <th>Gender</th>
       <th>Department</th>
-    </tr>
+      <tbody id="tbodyid"></tbody>
+    </thead>
   </table>
 </html>

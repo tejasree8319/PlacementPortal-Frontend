@@ -7,7 +7,7 @@
       function showdata() {
         $.ajax({
           type: 'get',
-          url: 'http://localhost:8000/student/all',
+          url: 'http://localhost:8000/student/all/All',
           dataType: 'json',
           success: function(response) {
             //alert(response);
@@ -20,6 +20,8 @@
               student_HTML +=
                 '<tr><td>' +
                 data.studentId +
+                '</td><td>' +
+                '<img src=./assets/images/'+data.studentId+'.jpg  width="42" height="42">'+
                 '</td><td>' +
                 data.studentName +
                 '</td><td>' +
@@ -39,6 +41,48 @@
           }
         });
       }
+      function GetSelectedTextValue(student) {
+        $("#tbodyid").empty();
+        var selectedText = student.options[student.selectedIndex].innerHTML;
+        console.log(selectedText)
+        $.ajax({
+          type:'get',
+          url:'http://localhost:8000/student/all/'+selectedText,
+          dataType:'json',
+          success:function(response){
+            var student_HTML=''
+            for (i = 0,j=1; i < response.length; i++,j++) {
+              var data = response[i];
+              student_HTML+=
+                '<tr><td>' +
+                data.studentId +
+                '</td><td>' +
+                '<img src=./assets/images/'+ data.studentId+'.jpg width="42" height="42">'+
+                '</td><td>' +
+                data.studentName +
+                '</td><td>' +
+                data.studentEmail +
+                '</td><td>' +
+                data.studentContact +
+                '</td><td>' +
+                data.studentGender +
+                '</td><td>' +
+                data.studentDept +
+                '</td></tr>';
+              console.log(data.studentId);
+              console.log(data.studentName);
+              console.log(data.studentEmail);
+              console.log(data.studentGender);
+              console.log(data.studentContact);
+            }
+             $('#tbodyid').append(student_HTML);
+           
+          },
+          error: function() {
+            alert('Error');
+          }
+        });
+    }
     </script>
     <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="./css/style.css" />
@@ -56,7 +100,20 @@
         <li><a> </a></li>
         <li><a> </a></li>
         <li><a> Home</a></li>
-        <li><a href="studentlist.html">Students</a></li>
+        <li> <select id="student" onchange="GetSelectedTextValue(this)">
+          <option value="" disabled selected hidden>Students</option>
+          <option value="CSE">CSE</option>
+          <option value="IT">IT</option>
+          <option value="ECE">ECE</option>
+          <option value="EEE">EEE</option>
+          <option value="Chemical">Chemical</option>
+          <option value="Mechanical">Mechanical</option>
+          <option value="Civil">Civil</option>
+          <option value="BME">BME</option>
+          <option value="PHE">PHE</option>
+          <option value="All">All</option>
+        </select>
+      </li>
         <li><a href="facultylist.html">Faculty</a></li>
         <li><a href="joblist.html">Jobs</a></li>
         <li><a href="placementlist.html">Placements</a></li>
@@ -80,14 +137,16 @@
   <table id="student_details" border="1" class="table table-bordered">
     <br/>
     <h1 style="text-align:center"> Student List</h1 style="text-align:center">
-    <tr>
+    <thead>
       <th>Id</th>
+      <th>Photo</th>
       <th>Name</th>
       <th>Email</th>
       <th>Contact</th>
       <th>Gender</th>
       <th>Department</th>
-    </tr>
+    </thead>
+    <tbody id="tbodyid"></tbody>
   </table>
 </body>
 </html>

@@ -3,6 +3,13 @@
     <title>
       Jobs List
     </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- <script>
+      $(function () {
+        $('#includedContent').load('common.html');
+      });
+    </script> -->
     <script>
       function showdata() {
         $.ajax({
@@ -11,22 +18,22 @@
           dataType: 'json',
           success: function (response) {
             console.log(response);
-            // for (i = 0; i < 1; i++) {
-            //   var data = response[i];
-            //   console.log(data);
-            //   $('#card1').text(data.jobProfile);
-            //   $('#card2').text(data.jobType);
-            //   $('#card3').append(data.jobDescription);
-            //   $('#card4').text(data.jobSkills);
-            //   $('#card5').text(data.jobEligibility);
-            //   $('#card6').append(data.jobSelectionProcess);
-            //   $('#card7').text(data.jobPackage);
-            //   $('#card8').text(data.interviewLocation);
-            //   $('#card9').append(data.jobLocation);
-            //   $('#card10').text(data.jobDate);
-            //   $('#card11').text(data.selectedCount);
-            //   $('card12').text(data.companyId.companyName);
-            // }
+            for (i = 0; i < 1; i++) {
+              var data = response[i];
+              console.log(data.companyId.companyName);
+              //   $('#card1').text(data.jobProfile);
+              //   $('#card2').text(data.jobType);
+              //   $('#card3').append(data.jobDescription);
+              //   $('#card4').text(data.jobSkills);
+              //   $('#card5').text(data.jobEligibility);
+              //   $('#card6').append(data.jobSelectionProcess);
+              //   $('#card7').text(data.jobPackage);
+              //   $('#card8').text(data.interviewLocation);
+              //   $('#card9').append(data.jobLocation);
+              //   $('#card10').text(data.jobDate);
+              //   $('#card11').text(data.selectedCount);
+              //   $('card12').text(data.companyId.companyName);
+            }
           },
           error: function () {
             alert('Error');
@@ -37,7 +44,6 @@
     <!-- <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="./css/style.css" /> -->
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- <script>
       $(function () {
         $('#includedContent').load('common.html');

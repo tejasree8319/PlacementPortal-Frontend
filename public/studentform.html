@@ -51,19 +51,48 @@
       $(document).ready(function() {
         $('form').submit(function() {
           var Name = document.getElementById('name').value;
+          var Email = document.getElementById('email').value;
+          var Contact = document.getElementById('contact').value;
+          var Gender = document.getElementById('gender').value;
+          var DOB = document.getElementById('dob').value;
+          var Department = document.getElementById('dept').value;
+          var TemporaryAddress = document.getElementById('temp').value;
+          var PermanentAddress = document.getElementById('permanent').value;
+          var Batch = document.getElementById('batch').value;
+          var SSC = document.getElementById('ssc').value;
+          var Inter = document.getElementById('inter').value;
+          var Diploma = document.getElementById('diploma').value;
+          var BTech = document.getElementById('btech').value;
+          var Resume = document.getElementById('resume').value;
+          var Photo = document.getElementById('photo').value;
           var formData = {
-            Name: Name
+            studentName: Name,
+            studentEmail:Email,
+            studentContact:Contact,
+            studentGender:Gender,
+            studentDob:DOB,
+            studentDept:Department,
+            studentTempAddress:TemporaryAddress,
+            studentPermanentAddress:PermanentAddress,
+            studentBatch:Batch,
+            studentSSCMarks:SSC,
+            studentInterMarks:Inter,
+            studentDiplomaMarks:Diploma,
+            studentBTechMarks:BTech,
+            // studentResume:Resume,
+            // studentPhoto:Photo
           };
           alert(Name);
+          var user=localStorage.getItem('userInfo')
+          var data=JSON.parse(user)
           $.ajax({
-            type: 'post',
-            url: 'http://localhost:8000/student',
+            type: 'patch',
+            url: 'http://localhost:8000/student/'+data.userId,
             dataType: 'json',
             data: formData,
             success: function(response) {
-              console.log(response);
-              Name=document.getElementById('name');
               alert('Local success callback');
+              window.location='/viewstudentform.html'
             },
             error: function(jqXHR, status, err) {
               console.log('Error');
@@ -158,9 +187,9 @@
       <label for="name">B.Tech Percentage:</label>
       <input type="text" id="btech" name="studentBTechMarks" required><br>
       <label for="name">Resume:</label>
-      <input type="file" id="resume" name="studentResume" required><br>
+      <input type="file" id="resume" name="studentResume" ><br>
       <label for="name">Photo:</label>
-      <input type="file" id="photo" name="studentPhoto" required><br>
+      <input type="file" id="photo" name="studentPhoto" ><br>
       <input type="submit" value="Submit" id="input-submit" />
     </form>
   </body>

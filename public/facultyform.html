@@ -40,8 +40,26 @@
       $(document).ready(function() {
         $('form').submit(function() {
           var Name = document.getElementById('name').value;
+          var Email = document.getElementById('email').value;
+          var Contact = document.getElementById('contact').value;
+          var Gender = document.getElementById('gender').value;
+          var Designation = document.getElementById('designation').value;
+          var Experience = document.getElementById('experience').value;
+          var Department = document.getElementById('dept').value;
+          var Qualification = document.getElementById('qualification').value;
+          var Resume = document.getElementById('resume').value;
+          var Photo = document.getElementById('photo').value;
           var formData = {
-            Name: Name
+            facultyName: Name,
+            facultyEmail: Email,
+            facultyContact:Contact,
+            facultyGender:Gender,
+            facultyDesignation:Designation,
+            facultyExperience:Experience,
+            facultyDept:Department,
+            facultyQualification:Qualification,
+            // facultyResume:Resume,
+            // facultyPhoto:Photo
           };
           alert(Name);
           var user=localStorage.getItem('userInfo')
@@ -54,7 +72,7 @@
             success: function(response) {
               console.log(response);
               alert('Local success callback');
-              window.location="http://localhost:8000/faculty/"+data.userId
+              window.location="/viewfacultyform.html"
             },
             error: function(jqXHR, status, err) {
               console.log('Error');
@@ -143,7 +161,7 @@
       <label for="name">Resume:</label>
       <input type="file" id="resume" name="facultyResume" ><br>
       <label for="name">Photo:</label>
-      <input type="file" id="photo" name="facultyPhoto" required><br>
+      <input type="file" id="photo" name="facultyPhoto" ><br>
       <input type="submit" value="Submit" id="input-submit" />
     </form>
   </body>
