@@ -22,6 +22,7 @@
             document.getElementById('logo').setAttribute("value",response.companyLogo)
             $("textarea#description").val(response.companyDescription);
             document.getElementById('sector').setAttribute("value",response.companySector)
+            document.getElementById('material').setAttribute("value",response.companyMaterial)
           },
           error: function() {
             alert('Error');
@@ -37,11 +38,13 @@
            var companyLogo = document.getElementById('logo').value;
            var companyDescription = document.getElementById('description').value;
            var companySector = document.getElementById('sector').value;
+           var companyMaterial= document.getElementById('material').value;
            var formData = {
              companyName: companyName,
              companyLogo:companyLogo,
              companyDescription:companyDescription,
-             companySector:companySector
+             companySector:companySector,
+             companyMaterial:companyMaterial
            };
            alert(companyName);
            $.ajax({
@@ -105,6 +108,15 @@
       <br/>
       <label for="name">Sector</label>
       <input type="text" id="sector" name="companySector" required><br>
+      <label for="name">Material</label><br>
+      <textarea
+      rows="5"
+      cols="60"
+      id="material"
+      name="companyMaterial"
+      ></textarea>
+      <br />
+      <br/>
       <input type="submit" value="Submit" id="input-submit" />
     </form>
   </body>

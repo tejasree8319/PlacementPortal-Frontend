@@ -1,0 +1,122 @@
+<html>
+  <head>
+    <title>
+      Job Form
+    </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script> 
+    $(function(){
+      $("#includedContent").load("common.html"); 
+    });
+    </script> 
+    <script>
+      function myFunction() {
+        // document.getElementById("add").innerHTML = "Hello World";
+        window.location='/feedback.html'
+      }
+    </script>
+    <script>
+      function showdata(){
+        var jobId=localStorage.getItem('jobId')
+        console.log(jobId)
+        $.ajax({
+         type: 'get',
+         url: 'http://localhost:8000/job/'+jobId,
+         dataType: 'json',
+         success: function(response){
+         console.log(response)
+         document.getElementById('companyId').setAttribute('value',response.companyId.companyName)
+         document.getElementById('profile').setAttribute('value',response.jobProfile)
+         document.getElementById('type').setAttribute('value',response.jobType)
+         document.getElementById('description').setAttribute('value',response.jobDescription)
+         document.getElementById('designation').setAttribute('value',response.jobDesignation)
+         document.getElementById('skills').setAttribute('value',response.jobSkills)
+         document.getElementById('eligibility').setAttribute('value',response.jobEligibility)
+         document.getElementById('selection process').setAttribute('value',response.jobSelectionProcess)
+         document.getElementById('package').setAttribute('value',response.jobPackage)
+         document.getElementById('interview location').setAttribute('value',response.interviewLocation)
+         document.getElementById('job location').setAttribute('value',response.jobLocation)
+         var today=response.jobDate
+         date=today.slice(0,10);
+         document.getElementById('date').setAttribute('value',date)
+         document.getElementById('selected count').setAttribute('value',response.selectedCount)
+         $.ajax({
+         type: 'get',
+         url: 'http://localhost:8000/feedback/all/'+jobId,
+         dataType: 'json',
+         success: function(response){
+           console.log(response)
+           var feedback=''
+           for(i=0;i<response.length;i++)
+           {
+             var data=response[i]
+             feedback+='<form><label for="name">Student Id: '+data.studentId.studentId+'</label><br><label for="name">Student Name: '+data.studentId.studentName+'</label><br><textarea style="float:center" rows="5" cols="60" name="description" disabled="true" placeholder='+data.studentFeedback+'></textarea><br /><br/></form>'
+           }
+           $('#feedback').append(feedback);
+          }
+         });
+        }
+        });
+      }
+      </script>
+    </head>
+    <body onload="showdata()">
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+          <div class="navbar-header"></div>
+          <ul class="nav navbar-nav">
+            <li><a> </a></li>
+            <li><a> </a></li>
+            <li><a> </a></li>
+            <li><a href="login.html">Home</a></li>
+            <li><a href="studentlist.html">Students</a></li>
+            <li><a href="facultylist.html">Faculty</a></li>
+            <li><a href="joblist.html">Jobs</a></li>
+            <li><a href="placementlist.html">Placements</a></li>
+            <li><a href="feedback.html">Feedback</a></li>
+            <li><a href="studentform.html">Student Form</a></li>
+            <li><a href="facultyform.html">Faculty Form</a></li>
+            <li><a href="jobform.html">Job Form</a></li>
+            <li><a>Logout</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div id="includedContent"></div>
+      <form action="http://localhost:8000/job" method="GET">
+        <br />
+        <br />
+        <h1 style="text-align:center"> View Job</h1 style="text-align:center">
+        <br/>
+        <label for="name">Company Id:</label>
+        <input type="text" id="companyId" name="companyId" disabled="true"><br />
+        <label for="name">Profile</label>
+        <input type="text" id="profile" name="jobProfile" disabled="true" required><br>
+        <label for="name">Type</label>
+        <input type="text" id="type" name="jobType" disabled="true" required><br>
+        <label for="name">Description</label>
+        <input type="text" id="description" name="jobDescription" disabled="true" required><br>
+        <label for="name">Designation</label>
+        <input type="text" id="designation" name="jobDesignation" disabled="true" required><br>
+        <label for="name">Skills</label>
+        <input type="text" id="skills" name="jobSkills" disabled="true" required><br>
+        <label for="name">Eligibility</label>
+        <input type="text" id="eligibility" name="jobEligibility" disabled="true" required><br>
+        <label for="name">Selection Process</label>
+        <input type="text" id="selection process" name="jobSelectionProcess" disabled="true" required><br>
+        <label for="name">Package</label>
+        <input type="text" id="package" name="jobPackage" disabled="true" required><br>
+        <label for="name">Interview Location</label>
+        <input type="text" id="interview location" name="interviewLocation" disabled="true" required><br>
+        <label for="name">Job Location</label>
+        <input type="text" id="job location" name="jobLocation" disabled="true" required><br>
+        <label for="name">Date</label>
+        <input type="date" id="date" name="jobDate" disabled="true" required><br>
+        <label for="name">Selected Count</label>
+        <input type="text" id="selected count" name="selectedCount" disabled="true"><br>
+      </form>
+      <div id="feedback">
+        <button id="add" onclick="myFunction()">Add Feedback</button>
+      </div>
+    </body>
+  </html>
+  

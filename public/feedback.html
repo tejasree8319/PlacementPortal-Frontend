@@ -9,21 +9,37 @@
       $("#includedContent").load("common.html"); 
     });
     </script> 
-    <!-- <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="./css/style.css" /> -->
+     <script>
+      function showdata() {
+        var Id=localStorage.getItem('userInfo');
+        var jobId=localStorage.getItem('jobId');
+        $.ajax({
+          type: 'post',
+          url: 'http://localhost:8000/feedback',
+          dataType: 'json',
+          success: function(response) {
+            console.log(response);
+          }
+        })
+      }
+     </script>
+    // <!-- <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
+    // <link rel="stylesheet" type="text/css" href="./css/style.css" /> -->
 
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
+    // <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
     <script>
       $(document).ready(function() {
         $('form').submit(function() {
-          // var studentId = document.getElementById('studentId').value;
-          // var jobId = document.getElementById('jobId').value;
-          // var formData = {
-          //   studentId: studentId,
-          //   jobId: jobId
-          // };
-          // alert(studentId);
-          // alert(jobId);
+           var studentId = document.getElementById('studentId').value;
+           var jobId = document.getElementById('jobId').value;
+           var fedback=document.getElementById('studentFeedback').value;
+          var formData = {
+            studentId: studentId,
+            jobId: jobId,
+            studentFeedback:feedback
+          };
+          alert(studentId);
+          alert(jobId);
           $.ajax({
             type: 'post',
             url: 'http://localhost:8000/feedback',
@@ -32,7 +48,7 @@
             success: function(response) {
               console.log('Success');
               alert('Local success callback');
-              window.location = 'http://localhost:8000/feedback/all';
+              window.location = 'http://localhost:8000/feedback/all/All';
             },
             error: function(jqXHR, status, err) {
               console.log('Error');
@@ -43,7 +59,7 @@
       });
     </script>
   </head>
-  <body>
+  <body onload="showdata()">
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -105,12 +121,6 @@
         placeholder="Feedback"
       ></textarea>
       <br />
-      <!-- <input
-        type="text"
-        id="feedback"
-        name="feedback"
-        placeholder="Feedback"
-        required -->
       <br />
       <input type="submit" value="Submit" id="input-submit" />
     </form>

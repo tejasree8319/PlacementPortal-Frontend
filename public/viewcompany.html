@@ -21,29 +21,12 @@
             document.getElementById('name').setAttribute("value",response.companyName)
             document.getElementById('logo').setAttribute("value",response.companyLogo)
             $("textarea#description").val(response.companyDescription);
-            document.getElementById('sector').setAttribute("value",response.companySector)     
+            document.getElementById('sector').setAttribute("value",response.companySector)
+            $("textarea#material").val(response.companyMaterial);   
           }
         });
     }
     </script>
-    <!-- <script>
-      $(document).ready(function() {
-           $.ajax({
-             type: 'get',
-             url: 'http://localhost:8000/company',
-             dataType: 'json',
-             data: formData,
-             success: function(response) {
-               console.log(response);
-               alert('Local success callback');
-             },
-             error: function(jqXHR, status, err) {
-               console.log('Error');
-               alert('Error');
-             }
-           });
-         });
-     </script> -->
      </head>
      <body onload="showdata()">
       <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -89,6 +72,16 @@
         <br/>
         <label for="name">Sector</label>
         <input type="text" id="sector" name="companySector" disabled="true" required><br>
+        <label for="name">Material</label><br/>
+        <textarea
+        rows="5"
+        cols="60"
+        id="material"
+        name="companyMaterial"
+        disabled="true"
+        ></textarea>
+        <br />
+        <br/>
       </form>
     </body>
   </html>

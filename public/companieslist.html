@@ -8,7 +8,7 @@
         localStorage.setItem('companyName', value);
         window.location='/editcompany.html'
       }
-      </script>
+    </script>
     <script>
       function showdata() {
         $.ajax({
@@ -28,6 +28,9 @@
                 '</td><td>'+
                 data.companyLogo+
                 '</td><td>'+'<button value='+data._id+' onclick="myFunction(this.value)">'+data.companyName+'</button>'+
+                '      <a href="/editcompany.html"><button type="button" class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-pencil"></span> </a>  </p>'+
+                // '<a href="/editcompany.html"><i class="fa fa-pencil-square" style="font-size:36px"></i></a>'
+                // '  <a href="/editcompany.html"><button style="margin-right: 30px" style="font-size:16px">Edit <i class="fa fa-pencil" style="font-size:36px"></i></button></a>'
                 '</td></tr>';
               }
              $('#company_details').append(company_HTML); 

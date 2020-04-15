@@ -1,7 +1,7 @@
 <html>
   <head>
     <title>
-      Company Form
+      Training Form
     </title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script> 
@@ -12,14 +12,16 @@
     <script>
      $(document).ready(function() {
         $('form').submit(function() {
-          var companyName = document.getElementById('name').value;
+          var studentId = document.getElementById('id').value;
+          var trainingType=document.getElementById('type').value
           var formData = {
-            companyName: companyName
+            studentId: studentId,
+            trainingType:trainingType
           };
-          alert(companyName);
+          alert(studentId);
           $.ajax({
             type: 'post',
-            url: 'http://localhost:8000/company',
+            url: 'http://localhost:8000/trainings',
             dataType: 'json',
             data: formData,
             success: function(response) {
@@ -27,7 +29,9 @@
               alert('Local success callback');
             },
             error: function(jqXHR, status, err) {
-              console.log('Error');
+              console.log(jqXHR);
+              console.log(status)
+              console.log(err)
               alert('Error');
             }
           });
@@ -58,35 +62,15 @@
         </div>
       </nav>
       <div id="includedContent"></div>
-      <form action="http://localhost:8000/company" method="POST">
+      <form action="http://localhost:8000/trainings" method="POST">
         <br />
         <br />
-        <h1 style="text-align:center"> Company Form</h1 style="text-align:center">
+        <h1 style="text-align:center"> Training Form</h1 style="text-align:center">
         <br/>
-        <label for="name">Name</label>
-        <input type="text" id="name" name="companyName" required><br>
-        <label for="name">Logo</label>
-        <input type="text" id="logo" name="companyLogo" required><br>
-        <label for="name">Description</label>
-        <textarea
-        rows="5"
-        cols="60"
-        name="companyDescription"
-        required
-        ></textarea>
-        <br />
-        <br/>
-        <label for="name">Sector</label>
-        <input type="text" id="sector" name="companySector" required><br>
-        <label for="name">Material</label><br>
-        <textarea
-        rows="5"
-        cols="60"
-        id="material"
-        name="companyMaterial"
-        ></textarea>
-        <br />
-        <br/>
+        <label for="name">Student Id</label>
+        <input type="text" id="id" name="studentId" required><br>
+        <label for="name">Type</label>
+        <input type="text" id="type" name="trainingType" required><br>
         <input type="submit" value="Submit" id="input-submit" />
       </form>
     </body>
