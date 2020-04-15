@@ -13,8 +13,16 @@
      $(document).ready(function() {
         $('form').submit(function() {
           var companyName = document.getElementById('name').value;
+          var companyLogo=document.getElementById('logo').value;
+          var companyDescription=document.getElementById('description').value;
+          var companySector=document.getElementById('sector').value;
+          var companyMaterial=document.getElementById('material').value;
           var formData = {
-            companyName: companyName
+            companyName: companyName,
+            companyLogo:companyLogo,
+            companyDescription:companyDescription,
+            companySector:companySector,
+            companyMaterial:companyMaterial
           };
           alert(companyName);
           $.ajax({
@@ -71,6 +79,7 @@
         <textarea
         rows="5"
         cols="60"
+        id="description"
         name="companyDescription"
         required
         ></textarea>
