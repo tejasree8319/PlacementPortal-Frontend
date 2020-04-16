@@ -32,10 +32,34 @@
     <script>
       $(document).ready(function() {
         $('form').submit(function() {
-          var companyId = document.getElementById('id').value;
-          var formData = {
-            companyId: companyId
-          };
+            var companyId = document.getElementById('id').value;
+            var Profile = document.getElementById('profile').value;
+            var Type = document.getElementById('type').value;
+            var Description = document.getElementById('description').value;
+            var Designation = document.getElementById('designation').value;
+            var Skills = document.getElementById('skills').value;
+            var Eligibility = document.getElementById('eligibility').value;
+            var SelecetionProcess = document.getElementById('selection process').value;
+            var Package = document.getElementById('package').value;
+            var InterviewLocation = document.getElementById('interview location').value;
+            var JobLocation = document.getElementById('job location').value;
+            var Date = document.getElementById('date').value;
+            var SelectedCount = document.getElementById('selected count').value;
+            var formData = {
+              companyId: companyId,
+              jobProfile:Profile,
+              jobType:Type,
+              jobDescription:Description,
+              jobDesignation:Designation,
+              jobSkills:Skills,
+              jobEligibility:Eligibility,
+              jobSelectionProcess:SelecetionProcess,
+              jobPackage:Package,
+              interviewLocation:InterviewLocation,
+              jobLocation:JobLocation,
+              jobDate:Date,
+              // selectedCount:SelectedCount,
+            };
           alert(companyId);
           $.ajax({
             type: 'post',
@@ -45,6 +69,8 @@
             success: function(response) {
               console.log(response);
               alert('Local success callback');
+              localStorage.setItem('jobId',response._id)
+              window.location='/viewjob.html'
             },
             error: function(jqXHR, status, err) {
               console.log('Error');
@@ -63,16 +89,16 @@
           <li><a> </a></li>
           <li><a> </a></li>
           <li><a> </a></li>
-          <li><a href="login.html">Home</a></li>
-          <li><a href="studentlist.html">Students</a></li>
-          <li><a href="facultylist.html">Faculty</a></li>
-          <li><a href="joblist.html">Jobs</a></li>
-          <li><a href="placementlist.html">Placements</a></li>
-          <li><a href="feedback.html">Feedback</a></li>
-          <li><a href="studentform.html">Student Form</a></li>
-          <li><a href="facultyform.html">Faculty Form</a></li>
-          <li><a href="jobform.html">Job Form</a></li>
-          <li><a>Logout</a></li>
+        <li><a href="login.html">Home</a></li>
+        <li><a href="register.html">Register</a></li>
+        <li><a href="studentlist.html">Students</a></li>
+        <li><a href="facultylist.html">Faculty</a></li>
+        <li><a href="joblist.html">Jobs</a></li>
+        <li><a href="placementlist.html">Placements</a></li>
+        <li><a href="companieslist.html">Companies</a></li>
+        <li><a href="traininglist.html">Trainings</a></li>
+        <li><a href="feedbacklist.html">Feedbacks</a></li>
+        <li><a>Logout</a></li>
         </ul>
       </div>
     </nav>

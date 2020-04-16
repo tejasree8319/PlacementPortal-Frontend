@@ -20,6 +20,11 @@
   <link href="./css/cardjquery.css" rel="stylesheet" type="text/css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script>
+    function displayResult() {
+      window.location = '/jobform.html';
+    }
+  </script>
+  <script>
     function myFunction(value) {
       localStorage.setItem('jobId', value);
       window.location = '/viewjob.html';
@@ -65,27 +70,32 @@
   </script>
 </head>
 <body onload="showdata()">
-  <!-- <div class="sidenav">
-    <br />
-    <br />
-    <a href="login.html"> Home</a>
-    <a href="register.html">Register</a>
-    <a href="studentlist.html">Students</a>
-    <a href="facultylist.html">Faculty</a>
-    <a href="joblist.html">Jobs</a>
-    <a href="placementlist.html">Placements</a>
-    <a href="feedback.html">Feedback</a>
-    <a href="studentform.html">Student Form</a>
-    <a href="facultyform.html">Faculty Form</a>
-    <a href="companyform.html">Company Form</a>
-    <a href="jobform.html">Job Form</a>
-    <a href="companieslist.html">Companies List</a>
-    <a href="viewcompany.html">View Company</a>
-    <a href="editcompany.html">Edit Company</a>
-    <a href="viewfacultyform.html">View Faculty Form</a>
-    <a href="viewstudentform.html">View Student Form</a>
-    <a>Logout</a>
-  </div> -->
-
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <!-- <a class="navbar-brand" href="register.html">Logout</a> -->
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a href="login.html">Home</a></li>
+        <li><a href="register.html">Register</a></li>
+        <li><a href="studentlist.html">Students</a></li>
+        <li><a href="facultylist.html">Faculty</a></li>
+        <li><a href="joblist.html">Jobs</a></li>
+        <li><a href="placementlist.html">Placements</a></li>
+        <li><a href="companieslist.html">Companies</a></li>
+        <li><a href="traininglist.html">Trainings</a></li>
+        <li><a href="feedbacklist.html">Feedbacks</a></li>
+        <li><a>Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div id="includedContent"></div>
+  <br />
+  <br />
+  <br />
+  <h1 style="text-align: center;" id="myHeader">Jobs List</h1>
+  <h2 style="text-align: right;">
+    <button onclick="displayResult()">Add Job</button>
+  </h2>
   <div id="jobcard"></div>
 </body>

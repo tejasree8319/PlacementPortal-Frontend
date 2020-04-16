@@ -4,6 +4,11 @@
       Feedback List
     </title>
     <script>
+      function displayResult() {
+        window.location = '/feedback.html';
+      }
+    </script>
+    <script>
       function showdata() {
         $.ajax({
           type: 'get',
@@ -17,7 +22,7 @@
               var data=response[i];
               feedback_HTML+= 
                '<tr><td>' +
-               j+
+               j+'.'+
                '</td><td>' +
                data.studentId.studentId +
                '</td><td>' +
@@ -52,15 +57,19 @@
           <li><a> </a></li>
           <li><a> </a></li>
           <li><a> </a></li>
-          <li><a> Home</a></li>
-          <li><a href="facultylist.html">Faculty</a></li>
-          <li><a href="joblist.html">Jobs</a></li>
-          <li><a href="placementlist.html">Placements</a></li>
-          <li><a href="feedback.html">Feedback</a></li>
-          <li><a>Logout</a></li>
+        <li><a href="login.html">Home</a></li>
+        <li><a href="register.html">Register</a></li>
+        <li><a href="studentlist.html">Students</a></li>
+        <li><a href="facultylist.html">Faculty</a></li>
+        <li><a href="joblist.html">Jobs</a></li>
+        <li><a href="placementlist.html">Placements</a></li>
+        <li><a href="companieslist.html">Companies</a></li>
+        <li><a href="traininglist.html">Trainings</a></li>
+        <li><a href="feedbacklist.html">Feedbacks</a></li>
+        <li><a>Logout</a></li>
         </ul>
       </div>
-      <div class="sidenav">
+      <!-- <div class="sidenav">
         <br />
         <br />
         <a> Home</a>
@@ -70,11 +79,15 @@
         <a href="placementlist.html">Placements</a>
         <a href="feedback.html">Feedback</a>
         <a>Logout</a>
-      </div>
+      </div> -->
     </nav>
     <table id="feedback_details" border="1" class="table table-bordered">
       <br/>
-      <h1 style="text-align:center"> Feedback List</h1 style="text-align:center">
+      <!-- <h1 style="text-align:center"> Feedback List</h1 style="text-align:center"> -->
+        <h1 style="text-align: center;" id="myHeader">Feedback List</h1>
+        <h2 style="text-align: right;">
+        <button onclick="displayResult()">Add Feedback</button>
+        </h2>
       <thead>
         <th>S.No</th>
         <th>Student Id</th>
