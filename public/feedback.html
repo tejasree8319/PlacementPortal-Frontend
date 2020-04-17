@@ -14,7 +14,7 @@
         var user=localStorage.getItem('userInfo')
         var data=JSON.parse(user)
         var jobId=localStorage.getItem('jobId');
-        document.getElementById('studentId').setAttribute("value",data.userId)
+        document.getElementById('studentId').setAttribute("value",data._id)
         document.getElementById('jobId').setAttribute("value",jobId)        
 
 
@@ -29,7 +29,7 @@
         $('form').submit(function() {
            var studentId = document.getElementById('studentId').value;
            var jobId = document.getElementById('jobId').value;
-           var fedback=document.getElementById('studentFeedback').value;
+           var feedback=document.getElementById('studentFeedback').value;
           var formData = {
             studentId: studentId,
             jobId: jobId,

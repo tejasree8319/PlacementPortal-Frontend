@@ -27,6 +27,7 @@
             dataType: 'json',
             data: formData,
             success: function(response) {
+              console.log(response)
               var login=JSON.stringify(response);
               localStorage.setItem('userInfo', login);
               alert('Local success callback');
@@ -34,11 +35,11 @@
               var data=JSON.parse(user)
               if(data.userType=='student')
               {
-                window.location="/studentform.html"
+                window.location="/viewstudentform.html"
               }
               else
               {
-                window.location='/facultyform.html'
+                window.location='/viewfacultyform.html'
               }
             },
             error: function(jqXHR, status, err) {

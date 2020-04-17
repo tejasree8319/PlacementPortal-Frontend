@@ -120,11 +120,9 @@
     <br />
     <h1 style="text-align: center;" id="myHeader">View Job</h1>
     <h2 style="text-align: right;">
-      <button onclick="displayResult()">Edit</button>
+      <button class="btn btn-primary" onclick="displayResult()">Edit</button>
     </h2>
-    <h6 style="text-align: right;">
-      <button id="add" onclick="myFunction()">Add Feedback</button>
-    </h6>
+
     <form action="http://localhost:8000/job" method="GET">
       <!-- <h1 style="text-align:center"> View Job</h1 style="text-align:center"> -->
       <!-- <h1 style="text-align: center;" id="myHeader">View Job</h1>
@@ -234,6 +232,11 @@
         disabled="true"
       /><br />
     </form>
+    <h6 style="text-align: center;">
+      <button class="btn btn-primary" id="add" onclick="myFunction()">
+        Add Feedback
+      </button>
+    </h6>
 
     <div id="feedback">
       <!-- <button id="add" onclick="myFunction()">Add Feedback</button> -->
