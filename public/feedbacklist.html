@@ -3,11 +3,10 @@
     <title>
       Feedback List
     </title>
-    <script>
-      function displayResult() {
-        window.location = '/feedback.html';
-      }
-    </script>
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+ 
     <script>
       function showdata() {
         $.ajax({
@@ -28,7 +27,9 @@
                '</td><td>' +
                data.studentId.studentName+
                '</td><td>' +
-               data.jobId._id+
+               data.jobId.companyId.companyName+
+               '</td><td>' +
+               data.jobId.jobDesignation+
                '</td><td>'+
                data.studentFeedback+
                '</td></tr>';
@@ -41,11 +42,8 @@
         })
       }
     </script>
-     </script>
-     <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
-     <link rel="stylesheet" type="text/css" href="./css/style.css" />
- 
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+     
+     
   </head>
   <body onload="showdata()">
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -83,16 +81,17 @@
     </nav>
     <table id="feedback_details" border="1" class="table table-bordered">
       <br/>
-      <!-- <h1 style="text-align:center"> Feedback List</h1 style="text-align:center"> -->
-        <h1 style="text-align: center;" id="myHeader">Feedback List</h1>
+      <h1 style="text-align:center"> Feedback List</h1 style="text-align:center">
+        <!-- <h1 style="text-align: center;" id="myHeader">Feedback List</h1>
         <h2 style="text-align: right;">
         <button onclick="displayResult()">Add Feedback</button>
-        </h2>
+        </h2> -->
       <thead>
         <th>S.No</th>
         <th>Student Id</th>
         <th>Student Name</th>
-        <th>Job Id</th>
+        <th>Company Name</th>
+        <th>Job Designation</th>
         <th>Feedback</th>
       </thead>
     </table>

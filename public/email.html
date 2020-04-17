@@ -1,0 +1,94 @@
+<html>
+  <head>
+    <title>
+      Email Form
+    </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+      $(function () {
+        $('#includedContent').load('common.html');
+      });
+    </script>
+     <script>
+      $(document).ready(function() {
+         $('form').submit(function() {
+           var to = document.getElementById('to').value;
+           var subject=document.getElementById('subject').value;
+           var text=document.getElementById('text').value;
+           var formData = {
+             emailto: to,
+             emailsubject:subject,
+             emailtext:text
+           };
+           //alert(companyName);
+           $.ajax({
+             type: 'post',
+             url: 'http://localhost:8000/email',
+             dataType: 'json',
+             data: formData,
+             success: function(response) {
+               console.log(response);
+               alert('Local success callback');
+             },
+             error: function(jqXHR, status, err) {
+               console.log('Error');
+               alert('Error');
+             }
+           });
+         });
+       });
+     </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header"></div>
+        <ul class="nav navbar-nav">
+          <li><a> </a></li>
+          <li><a> </a></li>
+          <li><a> </a></li>
+          <li><a> </a></li>
+      <li><a href="login.html">Home</a></li>
+      <li><a href="register.html">Register</a></li>
+      <li><a href="studentlist.html">Students</a></li>
+      <li><a href="facultylist.html">Faculty</a></li>
+      <li><a href="joblist.html">Jobs</a></li>
+      <li><a href="placementlist.html">Placements</a></li>
+      <li><a href="companieslist.html">Companies</a></li>
+      <li><a href="traininglist.html">Trainings</a></li>
+      <li><a href="feedbacklist.html">Feedbacks</a></li>
+      <li><a>Logout</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div id="includedContent"></div>
+    <form action="http://localhost:8000/email" method="POST">
+      <br />
+      <br />
+      <h1 style="text-align:center">Email</h1 style="text-align:center">
+      <br/>   
+      <label for="name">To</label><br/>
+      <textarea
+      rows="5"
+      cols="60"
+      id="to"
+      name="emailto"
+      required
+      ></textarea>
+      <br />
+      <br/>
+      <label for="name">Subject</label><br/>
+      <input type="text" id="subject" name="emailsubject" required><br>
+      <label for="name">Text</label><br>
+      <textarea
+      rows="5"
+      cols="60"
+      id="text"
+      name="emailtext"
+      ></textarea>
+      <br />
+      <br/>
+      <input type="submit" value="Submit" id="input-submit" />
+    </form>
+  </body>
+</html>
