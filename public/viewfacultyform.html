@@ -13,6 +13,7 @@
       function showdata(){
         var user=localStorage.getItem('userInfo')
         var data=JSON.parse(user)
+        $('img').attr("src", "./assets/images/"+data.userId+'.jpg');
          $.ajax({
          type: 'get',
          url: 'http://localhost:8000/faculty/'+ data.userId,
@@ -27,7 +28,7 @@
            $("#dept").val(response.facultyDept);
            document.getElementById("qualification").setAttribute("value", response.facultyQualification);
            document.getElementById("resume").setAttribute("value", response.facultyResume);
-           document.getElementById("photo").setAttribute("value", response.facultyPhoto);
+          //  document.getElementById("photo").setAttribute("value", response.facultyPhoto);
            console.log(response)
        }
      });
@@ -56,10 +57,10 @@
      </div>
    </nav> 
    <div id="includedContent"></div>
+   <br/>
+   <br/>
+   <img align="right" width="120" height="120">
    <form action="http://localhost:8000/faculty" method="GET">
-    <br />
-    <br />
-    <!-- <label for="uId">UserId:</label><br /> -->
     <h1 style="text-align:center">Faculty Form</h1 style="text-align:center">
     <br/>
     <label for="name">Name:</label>
@@ -97,8 +98,6 @@
     <input type="text" id="qualification" name="facultyQualification" disabled="true" required><br>
     <label for="name">Resume:</label>
     <input type="file" id="resume" name="facultyResume" disabled="true"><br>
-    <label for="name">Photo:</label>
-    <input type="file" id="photo" name="facultyPhoto" disabled="true" required><br>
   </form>
 </body>
 </html>

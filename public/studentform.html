@@ -17,6 +17,7 @@
        function showdata(){
           var user=localStorage.getItem('userInfo')
           var data=JSON.parse(user)
+          $('img').attr("src", "./assets/images/"+data.userId+'.jpg');
           $.ajax({
           type: 'get',
           url: 'http://localhost:8000/student/'+ data.userId,
@@ -38,10 +39,10 @@
             document.getElementById("batch").setAttribute("value", response.studentBatch);
             document.getElementById("ssc").setAttribute("value", response.studentSSCMarks);
             document.getElementById("inter").setAttribute("value", response.studentInterMarks);
-            document.getElementById("diploma").setAttribute("value", response.studentDiplomaMarks);
+            // document.getElementById("diploma").setAttribute("value", response.studentDiplomaMarks);
             document.getElementById("btech").setAttribute("value", response.studentBTechMarks);
             document.getElementById("resume").setAttribute("value", response.studentResume);
-            document.getElementById("photo").setAttribute("value", response.studentPhoto);
+            // document.getElementById("photo").setAttribute("value", response.studentPhoto);
             console.log(response)
         }
       });
@@ -61,10 +62,10 @@
           var Batch = document.getElementById('batch').value;
           var SSC = document.getElementById('ssc').value;
           var Inter = document.getElementById('inter').value;
-          var Diploma = document.getElementById('diploma').value;
+          // var Diploma = document.getElementById('diploma').value;
           var BTech = document.getElementById('btech').value;
           var Resume = document.getElementById('resume').value;
-          var Photo = document.getElementById('photo').value;
+          // var Photo = document.getElementById('photo').value;
           var formData = {
             studentName: Name,
             studentEmail:Email,
@@ -77,7 +78,7 @@
             studentBatch:Batch,
             studentSSCMarks:SSC,
             studentInterMarks:Inter,
-            studentDiplomaMarks:Diploma,
+            // studentDiplomaMarks:Diploma,
             studentBTechMarks:BTech,
             // studentResume:Resume,
             // studentPhoto:Photo
@@ -138,6 +139,9 @@
       <a href="studentform.html">Student Form</a>
       <a>Logout</a>
     </div> -->
+    <br/>
+    <br/>
+    <img align="right" width="120" height="120">
     <form action="http://localhost:8000/student" method="POST">
       <br />
       <br />
@@ -181,10 +185,10 @@
       <input type="text" id="batch" name="studentBatch" required><br>
       <label for="name">SSC Percentage:</label>
       <input type="text" id="ssc" name="studentSSCMarks" required><br>
-      <label for="name">Inter Percentage:</label>
+      <label for="name">Inter/Diploma Percentage:</label>
       <input type="text" id="inter" name="studentInterMarks" required><br>
-      <label for="name">Diploma Percentage:</label>
-      <input type="text" id="diploma" name="studentDiplomaMarks" ><br>
+      <!-- <label for="name">Diploma Percentage:</label>
+      <input type="text" id="diploma" name="studentDiplomaMarks" ><br> -->
       <label for="name">B.Tech Percentage:</label>
       <input type="text" id="btech" name="studentBTechMarks" required><br>
       <label for="name">Resume:</label>

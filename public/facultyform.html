@@ -16,6 +16,7 @@
       function showdata(){
         var user=localStorage.getItem('userInfo')
         var data=JSON.parse(user)
+         $('img').attr("src", "./assets/images/"+data.userId+'.jpg');
          $.ajax({
          type: 'get',
          url: 'http://localhost:8000/faculty/'+ data.userId,
@@ -119,6 +120,9 @@
       <a href="facultyform.html">Faculty Form</a>
       <a>Logout</a>
     </div>  -->
+    <br/>
+    <br/>
+    <img align="right" width="120" height="120">
     <form action="http://localhost:8000/faculty" method="PATCH">
       <br />
       <br />

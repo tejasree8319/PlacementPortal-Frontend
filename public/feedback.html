@@ -14,8 +14,8 @@
         var user=localStorage.getItem('userInfo')
         var data=JSON.parse(user)
         var jobId=localStorage.getItem('jobId');
-        document.getElementById('studentId').setAttribute("value",data._id)
-        document.getElementById('jobId').setAttribute("value",jobId)        
+        document.getElementById('studentId').setAttribute("value",data.userId)
+        document.getElementById('jobId').setAttribute("value",jobId.jobDesignation)        
 
 
       }

@@ -13,6 +13,7 @@
       function showdata(){
          var user=localStorage.getItem('userInfo')
          var data=JSON.parse(user)
+         $('img').attr("src", "./assets/images/"+data.userId+'.jpg');
          $.ajax({
          type: 'get',
          url: 'http://localhost:8000/student/'+ data.userId,
@@ -34,7 +35,7 @@
            document.getElementById("batch").setAttribute("value", response.studentBatch);
            document.getElementById("ssc").setAttribute("value", response.studentSSCMarks);
            document.getElementById("inter").setAttribute("value", response.studentInterMarks);
-           document.getElementById("diploma").setAttribute("value", response.studentDiplomaMarks);
+          //  document.getElementById("diploma").setAttribute("value", response.studentDiplomaMarks);
            document.getElementById("btech").setAttribute("value", response.studentBTechMarks);
            document.getElementById("resume").setAttribute("value", response.studentResume);
            document.getElementById("photo").setAttribute("value", response.studentPhoto);
@@ -66,9 +67,10 @@
       </div>
     </nav> 
     <div id="includedContent"></div>
+    <br/>
+    <br/>
+    <img align="right" width="120" height="120">
     <form action="http://localhost:8000/student" method="GET">
-     <br />
-     <br />
      <h1 style="text-align:center">Student Form</h1 style="text-align:center">
      <br/>
      <label for="name">Name:</label>
@@ -108,16 +110,14 @@
       <input type="text" id="batch" name="studentBatch" disabled="true" required><br>
       <label for="name">SSC Percentage:</label>
       <input type="text" id="ssc" name="studentSSCMarks" disabled="true" required><br>
-      <label for="name">Inter Percentage:</label>
+      <label for="name">Inter/Diploma Percentage:</label>
       <input type="text" id="inter" name="studentInterMarks" disabled="true" required><br>
-      <label for="name">Diploma Percentage:</label>
-      <input type="text" id="diploma" name="studentDiplomaMarks" disabled="true" ><br>
+      <!-- <label for="name">Diploma Percentage:</label>
+      <input type="text" id="diploma" name="studentDiplomaMarks" disabled="true" ><br> -->
       <label for="name">B.Tech Percentage:</label>
       <input type="text" id="btech" name="studentBTechMarks" disabled="true" required><br>
       <label for="name">Resume:</label>
       <input type="file" id="resume" name="studentResume" disabled="true" required><br>
-      <label for="name">Photo:</label>
-      <input type="file" id="photo" name="studentPhoto" disabled="true" required><br>
      </form>
   </body>
 </html>
